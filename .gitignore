@@ -1,0 +1,22 @@
+# Blender application binaries & folders
+blender-*/
+*.zip
+*.7z
+*.rar
+*.tar.gz
+*.exe
+*.dll
+*.pdb
+
+# Blender project backups and autosaves
+*.blend1
+*.blend2
+*.blend@
+*.blend@@
+
+# OS metadata
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
