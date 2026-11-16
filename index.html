@@ -3,21 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXRAY 3D // Digital Sculpt & Additive Manufacturing</title>
-  <meta name="description" content="Precision 3D sculptural engineering, custom figurines, and production-ready additive manufacturing assets by NEXRAY 3D.">
+  <title>Nexray 3D — Custom 3D Sculpting & Additive Manufacturing</title>
+  <meta name="description" content="Precision 3D sculptural engineering, custom figurines, and production-ready additive manufacturing assets by Nexray.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #07090e;
-      --card-bg: #0f172a;
-      --card-border: rgba(56, 189, 248, 0.2);
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.35);
-      --gold: #d4af37;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
+      --brand: #0038FF;
+      --brand-dark: #001A99;
+      --brand-glow: rgba(0, 56, 255, 0.25);
+      --accent: #CCFF00;
+      --bg: #fafafa;
+      --bg-2: #f1f5f9;
+      --card-bg: #ffffff;
+      --card-border: rgba(0, 0, 0, 0.08);
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --shadow-brand: 0 12px 36px rgba(0, 56, 255, 0.16);
+      --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.06);
+      --radius: 16px;
+      --radius-sm: 8px;
     }
     * {
       box-sizing: border-box;
@@ -30,263 +36,386 @@
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
-      background-image: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 60%);
     }
-    header {
-      padding: 24px 32px;
+
+    /* Top Navigation matching nexray.in */
+    nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 16px 28px;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
-    .logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: #ffffff;
-      text-transform: uppercase;
+    .nav-logo {
+      display: flex;
+      align-items: center;
       text-decoration: none;
     }
-    .logo span {
-      color: var(--accent);
+    .nav-logo img {
+      height: 38px;
+      width: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0, 56, 255, 0.25);
     }
-    .logo-sub {
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: var(--text-muted);
-      display: block;
-      margin-top: 2px;
-    }
-    .nav-btn {
-      background: rgba(56, 189, 248, 0.12);
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
+    .nav-logo-text {
+      font-family: 'Arial Black', Impact, sans-serif;
+      font-weight: 900;
+      font-size: 1.35rem;
       letter-spacing: 1px;
-      text-decoration: none;
-      transition: all 0.2s ease;
+      margin-left: 12px;
+      color: #0f172a;
+      text-transform: uppercase;
     }
-    .nav-btn:hover {
-      background: var(--accent);
-      color: #000;
-      box-shadow: 0 0 20px var(--accent-glow);
+    .logo-accent {
+      color: var(--brand);
     }
-    .hero {
-      max-width: 1200px;
-      margin: 60px auto 40px auto;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 30px;
-      color: var(--accent);
+    .nav-sub {
       font-size: 11px;
       font-weight: 700;
+      color: #94a3b8;
       letter-spacing: 2px;
+      margin-left: 6px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-link:hover {
+      color: var(--brand);
+    }
+    .btn-brand {
+      background: var(--brand);
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      box-shadow: 0 4px 18px var(--brand-glow);
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .btn-brand:hover {
+      background: var(--brand-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(0, 56, 255, 0.4);
+    }
+
+    /* Hero Section with Nexray Signature Electric Blue */
+    .hero-banner {
+      background: linear-gradient(135deg, #0038FF 0%, #001A99 100%);
+      color: #ffffff;
+      padding: 70px 24px 80px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 30%, rgba(204, 255, 0, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      color: var(--accent);
+      border: 1px solid rgba(204, 255, 0, 0.35);
+      margin-bottom: 24px;
     }
     h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(32px, 5vw, 56px);
-      font-weight: 700;
+      font-size: clamp(34px, 5.5vw, 60px);
+      font-weight: 800;
       letter-spacing: -1px;
       line-height: 1.15;
       margin-bottom: 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    h1 span {
-      background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    h1 .highlight {
+      color: var(--accent);
     }
-    .subtitle {
-      font-size: clamp(16px, 2vw, 19px);
-      color: var(--text-muted);
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: #cbd5e1;
       max-width: 680px;
-      margin: 0 auto 40px auto;
+      margin: 0 auto 36px auto;
+      line-height: 1.6;
+    }
+    .btn-lime {
+      background: var(--accent);
+      color: #000000;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 34px;
+      border-radius: 9999px;
+      box-shadow: 0 8px 24px rgba(204, 255, 0, 0.35);
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .btn-lime:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(204, 255, 0, 0.5);
+    }
+
+    /* Main Showcase Container */
+    .showcase-wrapper {
+      max-width: 1050px;
+      margin: -40px auto 60px auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
     }
     .showcase-card {
-      max-width: 900px;
-      margin: 40px auto 80px auto;
       background: var(--card-bg);
+      border-radius: var(--radius);
       border: 1px solid var(--card-border);
-      border-radius: 20px;
+      box-shadow: var(--shadow-brand);
       overflow: hidden;
-      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
-      text-align: left;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media(min-width: 860px) {
+      .showcase-card {
+        grid-template-columns: 1.15fr 1fr;
+      }
     }
     .showcase-media {
-      position: relative;
-      width: 100%;
-      line-height: 0;
-      background: #000;
+      background: #0b1120;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
     .showcase-media img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
-    .showcase-body {
-      padding: 36px 40px;
-    }
-    .project-header {
+    .showcase-content {
+      padding: 38px 36px;
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      gap: 15px;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .project-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--brand);
+      text-transform: uppercase;
+      margin-bottom: 8px;
     }
     .project-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 26px;
-      font-weight: 700;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
     }
-    .project-tag {
-      color: var(--gold);
-      font-weight: 600;
+    .project-subtitle {
       font-size: 14px;
-      display: block;
-      margin-top: 4px;
+      font-weight: 600;
+      color: var(--brand);
+      margin-bottom: 18px;
     }
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    /* Specs Grid */
     .specs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin: 28px 0;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
     }
     .spec-item {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      padding: 16px;
+      background: var(--bg-2);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
     }
     .spec-label {
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 1.5px;
       color: var(--text-muted);
       text-transform: uppercase;
     }
     .spec-value {
-      font-size: 18px;
-      font-weight: 700;
-      color: #fff;
-      margin-top: 4px;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      margin-top: 3px;
     }
-    .btn-primary {
-      display: inline-block;
-      background: linear-gradient(135deg, #0284c7 0%, var(--accent) 100%);
-      color: #fff;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 14px 32px;
-      border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.3);
-      transition: all 0.2s ease;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.5);
-    }
-    .services-section {
+
+    /* Capabilities Section */
+    .section {
       max-width: 1100px;
       margin: 80px auto;
       padding: 0 24px;
     }
-    .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 28px;
+    .section-head {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 48px;
     }
-    .services-grid {
+    .section-head h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-top: 8px;
+    }
+    .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 24px;
     }
-    .service-card {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 28px;
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .service-card h3 {
-      font-size: 18px;
-      color: var(--accent);
-      margin-bottom: 12px;
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-brand);
+      border-color: rgba(0, 56, 255, 0.2);
     }
-    .service-card p {
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(0, 56, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand);
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .card p {
       color: var(--text-muted);
       font-size: 14px;
       line-height: 1.7;
     }
+
+    /* Footer matching nexray.in */
     footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: #ffffff;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
       padding: 40px 24px;
       text-align: center;
+      font-size: 13px;
       color: var(--text-muted);
-      font-size: 12px;
     }
     footer a {
-      color: var(--accent);
+      color: var(--brand);
       text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation -->
-  <header>
-    <a href="#" class="logo">
-      NEX<span>RAY</span> // 3D
-      <span class="logo-sub">DIGITAL SCULPT &amp; ADDITIVE MANUFACTURING</span>
-    </a>
-    <a href="mailto:info@nexray.in" class="nav-btn">CONTACT STUDIO</a>
-  </header>
+  <!-- Top Navigation matching nexray.in -->
+  <nav>
+    <div class="nav-container">
+      <a href="https://nexray.in" class="nav-logo">
+        <img src="https://res.cloudinary.com/djy0vsvfg/image/upload/v1774822889/logo_highres_hdmcey.png" alt="Nexray Logo">
+        <span class="nav-logo-text">NEX<span class="logo-accent">RAY</span><span class="nav-sub">// 3D</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="https://nexray.in" class="nav-link">Main Site</a>
+        <a href="mailto:info@nexray.in" class="btn-brand">Commission a Model</a>
+      </div>
+    </div>
+  </nav>
 
-  <!-- Hero Headline -->
-  <main class="hero">
-    <div class="badge">PRECISION DIGITAL ATELIER</div>
-    <h1>Engineered for <span>Flawless 3D Print</span> Production</h1>
-    <p class="subtitle">
-      Specializing in museum-grade sculptural digital modeling, watertight manifold preparation, and high-fidelity additive manufacturing assets.
+  <!-- Hero Section with Nexray Cobalt Blue & Neon Lime -->
+  <section class="hero-banner">
+    <div class="hero-badge">
+      <span>●</span> NEXRAY 3D ATELIER &bull; DIGITAL MANUFACTURING
+    </div>
+    <h1>Custom 3D Sculpting &amp; <span class="highlight">Additive Manufacturing</span></h1>
+    <p class="hero-sub">
+      From high-detail deity and figurine sculptures to precision production assets—engineered 100% watertight and slicer-ready.
     </p>
+    <div>
+      <a href="mailto:info@nexray.in?subject=3D%20Print%20Commission%20Inquiry" class="btn-lime">Inquire for 3D Design</a>
+    </div>
+  </section>
 
-    <!-- Master Showcase Card -->
+  <!-- Featured 3D Master Showcase Card -->
+  <div class="showcase-wrapper">
     <div class="showcase-card">
       <div class="showcase-media">
         <img src="SuperProfile_Cover_1280x720.png" alt="Lord Kodanda Rama 6-Inch Sculpt">
       </div>
-      <div class="showcase-body">
-        <div class="project-header">
-          <div>
-            <div class="spec-label">FEATURED DISPATCH</div>
-            <div class="project-title">Lord Kodanda Rama</div>
-            <span class="project-tag">6.00-Inch Precision Production Master</span>
-          </div>
-          <div>
-            <a href="mailto:info@nexray.in?subject=3D%20Print%20Commission%20Inquiry" class="btn-primary">Inquire About This Model</a>
-          </div>
-        </div>
-        
-        <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
-          Faithfully reconstructed to match classical iconography. Features the sacred Kodanda bow, fanned 4-arrow quiver, Mukut filigree, and Varada Mudra posture. Pre-calibrated to exactly 152.4 mm with a planar bed contact.
+      <div class="showcase-content">
+        <span class="project-badge">FEATURED PRODUCTION MASTER</span>
+        <h2 class="project-title">Lord Kodanda Rama</h2>
+        <div class="project-subtitle">6.00-Inch Precision Production Master</div>
+        <p class="project-desc">
+          Custom sculpted according to classical iconography. Features the sacred Kodanda bow, fanned 4-arrow shoulder quiver, detailed Mukut filigree, and Varada Mudra posture. Pre-leveled planar base at Z = 0.00 mm for zero-wobble bed adhesion.
         </p>
 
         <div class="specs-grid">
@@ -295,46 +424,61 @@
             <div class="spec-value">152.40 mm (6.00")</div>
           </div>
           <div class="spec-item">
-            <div class="spec-label">POLYGON DENSITY</div>
-            <div class="spec-value" style="color: var(--accent);">2.20M Triangles</div>
+            <div class="spec-label">GEOMETRY DETAIL</div>
+            <div class="spec-value" style="color: var(--brand);">2.20M Triangles</div>
           </div>
           <div class="spec-item">
             <div class="spec-label">TOPOLOGY STATUS</div>
-            <div class="spec-value" style="color: #34d399;">100% Watertight</div>
+            <div class="spec-value" style="color: #16a34a;">100% Watertight</div>
           </div>
           <div class="spec-item">
-            <div class="spec-label">BED LEVELING</div>
+            <div class="spec-label">PRINT ADHESION</div>
             <div class="spec-value">Z = 0.00 mm Base</div>
           </div>
         </div>
+
+        <div>
+          <a href="mailto:info@nexray.in?subject=Order%20Inquiry%20-%20Lord%20Rama%206-Inch%20STL" class="btn-brand" style="width: 100%; text-align: center; padding: 14px 20px;">
+            Order This Model &bull; &#8377;1,500
+          </a>
+        </div>
       </div>
     </div>
-  </main>
+  </div>
 
   <!-- Studio Capabilities -->
-  <section class="services-section">
-    <h2 class="section-title">Studio Capabilities</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Custom Deity &amp; Figurine Sculpting</h3>
-        <p>Photographic and classical iconographic digital reconstruction with meticulous micro-relief detailing for high-resolution resin and filament printing.</p>
+  <section class="section">
+    <div class="section-head">
+      <h2>Engineered for Flawless Printing</h2>
+      <p>Every asset delivered by Nexray 3D passes rigorous production checks.</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <h3>Classical &amp; Modern 3D Sculpting</h3>
+        <p>Photographic and reference-based digital sculpting with intricate micro-relief details optimized for resin (SLA) and filament (FDM) output.</p>
       </div>
-      <div class="service-card">
+
+      <div class="card">
+        <div class="card-icon">⚡</div>
         <h3>100% Watertight Manifold Topology</h3>
-        <p>Zero non-manifold edges, zero boundary holes, and single continuous solid components guaranteed to slice cleanly in Bambu Studio, OrcaSlicer, and Chitubox.</p>
+        <p>Zero non-manifold edges, zero boundary gaps, and clean single-shell geometry guaranteed to import into Bambu Studio, OrcaSlicer, and Chitubox without repair prompts.</p>
       </div>
-      <div class="service-card">
-        <h3>Additive Manufacturing Calibration</h3>
-        <p>Pre-oriented overhangs, balanced centers of gravity, and planar build-plate adhesion planes that eliminate printing failures and warping.</p>
+
+      <div class="card">
+        <div class="card-icon">📐</div>
+        <h3>Production Calibration &amp; Scaling</h3>
+        <p>True flat-bottom contact planes for rock-solid first-layer adhesion, balanced centers of gravity, and pre-oriented overhangs that minimize support scarring.</p>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer matching nexray.in -->
   <footer>
-    <p>&copy; 2026 NEXRAY 3D &bull; A Division of <a href="https://nexray.in">nexray.in</a>. All Rights Reserved.</p>
-    <p style="margin-top: 6px; font-size: 11px; color: #64748b;">
-      Studio Inquiries &bull; <a href="mailto:info@nexray.in">info@nexray.in</a>
+    <p>&copy; 2026 <strong>NEXRAY 3D</strong> &bull; A Division of <a href="https://nexray.in">nexray.in</a>. All rights reserved.</p>
+    <p style="margin-top: 8px; font-size: 12px; color: #94a3b8;">
+      Inquiries &bull; <a href="mailto:info@nexray.in">info@nexray.in</a> | Visit <a href="https://nexray.in">nexray.in</a>
     </p>
   </footer>
 
