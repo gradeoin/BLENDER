@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services &amp; Engineering Disciplines // NEXRAY 3D</title>
+  <meta name="description" content="Precision 3D sculptural engineering, sacred Hindu iconography, watertight STL repair, and additive manufacturing consultation by Nexray 3D.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .service-hero {
+      background: linear-gradient(135deg, #0038FF 0%, #001A99 100%);
+      color: #ffffff;
+      padding: 60px 24px 70px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 30%, rgba(204, 255, 0, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .service-card-deep {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 36px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card-deep:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-brand);
+      border-color: rgba(0, 56, 255, 0.25);
+    }
+    .service-badge {
+      display: inline-block;
+      background: rgba(0, 56, 255, 0.08);
+      color: var(--brand);
+      border: 1px solid rgba(0, 56, 255, 0.2);
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .service-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .service-desc {
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .features-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .feature-item {
+      background: var(--bg-2);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      font-size: 13px;
+      color: var(--text-2);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .feature-item strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .feature-icon {
+      color: var(--brand);
+      font-size: 18px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    /* Standards Matrix */
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      background: #ffffff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-card);
+    }
+    .matrix-table th {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 16px 20px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: left;
+    }
+    .matrix-table td {
+      padding: 14px 20px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--bg-2);
+      color: var(--text-2);
+    }
+    .matrix-table tr:last-child td {
+      border-bottom: none;
+    }
+    .matrix-table tr:hover td {
+      background: #f8fafc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="https://res.cloudinary.com/djy0vsvfg/image/upload/v1774822889/logo_highres_hdmcey.png" alt="Nexray Logo">
+        <span class="nav-logo-text">NEX<span class="logo-accent">RAY</span><span class="nav-sub">// 3D</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link active">Services</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="viewer.html" class="nav-link">3D Viewer</a>
+        <a href="pricing.html" class="nav-link">Pricing &amp; Calc</a>
+        <a href="print-guide.html" class="nav-link">Print Guide</a>
+        <a href="about.html" class="nav-link">Studio</a>
+        <a href="contact.html" class="btn-brand">Commission a Sculpt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Header -->
+  <header class="service-hero">
+    <div class="hero-badge">&bull; ATELIER DISCIPLINES &amp; CAPABILITIES &bull;</div>
+    <h1>PRECISION 3D <span class="highlight">ENGINEERING</span></h1>
+    <p class="hero-sub">
+      From sacred temple deities to production-grade additive tooling, we sculpt, manifold, and slice 3D models engineered for flawless physical manufacturing.
+    </p>
+  </header>
+
+  <main class="section">
+
+    <!-- Discipline 1: Sacred Iconography & Sculpting -->
+    <div class="service-card-deep">
+      <span class="service-badge">DISCIPLINE 01 // DIGITAL SCULPTING</span>
+      <h2 class="service-title">Sacred Hindu Iconography &amp; Figurines</h2>
+      <p class="service-desc">
+        We specialize in authentic sculptural reconstructions of classical Indian deities (Lord Kodanda Rama, Hanuman, Shiva Nataraja, Ganesha) and bespoke portrait busts. Every commission undergoes deep iconographic research—from Shilpa Shastra mudras and ornaments to aerodynamic quiver fanning and sacred bow stave anchoring.
+      </p>
+      <div class="features-list">
+        <div class="feature-item">
+          <span class="feature-icon">&#9670;</span>
+          <div>
+            <strong>Scriptural Mudra Accuracy</strong>
+            Precise hand gestures including Varada (grace/granting) and Abhaya (fearlessness) with anatomical digit flow.
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">&#9670;</span>
+          <div>
+            <strong>Continuous Sacred Drapery</strong>
+            Eliminates paper-thin cloth boundaries; all dhoti pleats and uttarīyam sashes are sculpted with physical print thickness (&gt;1.2mm).
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">&#9670;</span>
+          <div>
+            <strong>Multi-Million Polygon Fidelity</strong>
+            Up to 3,000,000+ triangles captured in crisp binary STL format for sub-20 micron resin detail reproduction.
+          </div>
+        </div>
+      </div>
+      <a href="contact.html?tier=sculpt" class="btn-brand">Commission a Sculpt &rarr;</a>
+    </div>
+
+    <!-- Discipline 2: 3D Print Repair & Topology Optimization -->
+    <div class="service-card-deep">
+      <span class="service-badge">DISCIPLINE 02 // TOPOLOGY &amp; MESH REPAIR</span>
+      <h2 class="service-title">Watertight Manifolding &amp; Slicer Optimization</h2>
+      <p class="service-desc">
+        Have an AI-generated 3D model (Meshy, Tripo, CSM) or raw 3D scan with non-manifold edges, open boundary holes, or overlapping inverted normals? Our proprietary topology repair pipeline reconstructs your geometry into a 100% watertight solid manifold that slices with zero slicer errors on any printer.
+      </p>
+      <div class="features-list">
+        <div class="feature-item">
+          <span class="feature-icon">&#9670;</span>
+          <div>
+            <strong>Zero Non-Manifold Edges</strong>
+            Strict manifold guarantees: 0 boundary edges, 0 zero-volume shells, 0 self-intersecting shells.
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">&#9670;</span>
+          <div>
+            <strong>True Flat Base Grounding (Z=0)</strong>
+            Every pedestal and foot surface is precision-cut to Z=0.00mm, preventing mid-air starts or bed detachment.
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">&#9670;</span>
+          <div>
+            <strong>Hollowing &amp; Suction Relief</strong>
+            Internal 2.2mm wall shelling with dual concealed 3.5mm drain holes for resin suction release and chemical wash efficiency.
+          </div>
+        </div>
+      </div>
+      <a href="contact.html?tier=repair" class="btn-brand">Submit Mesh for Repair (&#8377;799) &rarr;</a>
+    </div>
+
+    <!-- Discipline 3: Turnkey Additive Manufacturing -->
+    <div class="service-card-deep">
+      <span class="service-badge">DISCIPLINE 03 // MANUFACTURING</span>
+      <h2 class="service-title">Additive Consultation &amp; Physical Turnkey Fabrication</h2>
+      <p class="service-desc">
+        We bridge digital CAD and physical fabrication. Whether you print on an ultra-high-speed Bambu Lab FDM setup, a 12K SLA/MSLA resin printer, or need lost-wax investment patterns for traditional bronze and brass casting, we provide verified slicing profiles and physical prototype delivery across India.
+      </p>
+      <div class="features-list">
+        <div class="feature-item">
+          <span class="feature-icon">&#9670;</span>
+          <div>
+            <strong>Slicing Profiles &amp; Scenes</strong>
+            Turnkey Chitubox, Lychee, OrcaSlicer, and Bambu Studio project files with tuned support contact diameters and angles.
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">&#9670;</span>
+          <div>
+            <strong>Lost-Wax Bronze Cast Patterns</strong>
+            Zero-ash castable resin formulations engineered specifically for South Indian cire-perdue bronze idol casting.
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">&#9670;</span>
+          <div>
+            <strong>Express Turnaround</strong>
+            24-to-48 hour delivery for digital CAD packages; secure bubble-cushioned shipping across India for physical prints.
+          </div>
+        </div>
+      </div>
+      <a href="pricing.html" class="btn-brand">Calculate Turnkey Pricing &rarr;</a>
+    </div>
+
+    <!-- Engineering Standards Matrix -->
+    <div style="margin-top: 60px;">
+      <div class="section-head">
+        <h2>STUDIO ENGINEERING STANDARDS</h2>
+        <p>Every digital sculpt and 3D print asset delivered adheres to our strict additive tolerances.</p>
+      </div>
+
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Resin (8K / 12K MSLA)</th>
+            <th>FDM (Bambu Lab / Prusa)</th>
+            <th>Bronze Cast Pattern</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Layer Height</strong></td>
+            <td>0.02 mm – 0.035 mm</td>
+            <td>0.08 mm – 0.12 mm</td>
+            <td>0.025 mm (Zero-Ash)</td>
+          </tr>
+          <tr>
+            <td><strong>Min. Wall Thickness</strong></td>
+            <td>1.20 mm</td>
+            <td>1.60 mm (4 Perimeters)</td>
+            <td>2.50 mm (Shrinkage Allowance)</td>
+          </tr>
+          <tr>
+            <td><strong>Overhang Threshold</strong></td>
+            <td>Supports at &gt;35&deg;</td>
+            <td>Supports at &gt;50&deg;</td>
+            <td>Custom tree sprues</td>
+          </tr>
+          <tr>
+            <td><strong>Watertight Guarantee</strong></td>
+            <td>100% Manifold (0 Holes)</td>
+            <td>100% Manifold (0 Holes)</td>
+            <td>100% Solid Shell</td>
+          </tr>
+          <tr>
+            <td><strong>Contact Base Flatness</strong></td>
+            <td>&plusmn;0.01 mm at Z=0.00</td>
+            <td>&plusmn;0.02 mm at Z=0.00</td>
+            <td>Machined sprue base</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Final CTA Banner -->
+    <div style="margin-top: 60px; background: #0f172a; border-radius: var(--radius); padding: 44px 36px; text-align: center; color: #ffffff;">
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; margin-bottom: 12px;">READY TO BRING YOUR SCULPT TO LIFE?</h2>
+      <p style="color: #94a3b8; max-width: 600px; margin: 0 auto 24px auto; font-size: 15px;">
+        Lock your production slot today with an initial 50% advance. Zero risk with our 100% Slicer Satisfaction Guarantee.
+      </p>
+      <a href="contact.html" class="btn-lime">Inquire with Our Engineering Team &rarr;</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="viewer.html">3D Viewer</a>
+      <a href="pricing.html">Pricing &amp; Calculator</a>
+      <a href="print-guide.html">Print Guide</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+      <a href="email-hub.html">Studio Email Hub</a>
+    </div>
+    <p>&copy; 2026 NEXRAY 3D Atelier. A division of <a href="https://nexray.in">nexray.in</a>. All rights reserved.</p>
+    <p style="margin-top: 6px; font-size: 12px; color: #94a3b8;">
+      Official Contacts: <a href="mailto:info@nexray.in">info@nexray.in</a> &bull; <a href="mailto:dev@nexray.in">dev@nexray.in</a> &bull; <a href="mailto:support@nexray.in">support@nexray.in</a>
+    </p>
+  </footer>
+
+</body>
+</html>

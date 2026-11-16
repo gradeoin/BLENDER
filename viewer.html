@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Web Studio Inspector // Lord Kodanda Rama // NEXRAY 3D</title>
+  <meta name="description" content="Interactive 3D real-time model viewer for the 6-inch Lord Kodanda Rama sculpture by Nexray 3D. Rotate, inspect geometry, and review additive manufacturing tolerances.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Model Viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  <style>
+    body {
+      background: #090d16;
+      color: #ffffff;
+    }
+    .viewer-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      height: calc(100vh - 74px);
+      overflow: hidden;
+    }
+    @media (max-width: 900px) {
+      .viewer-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: visible;
+      }
+    }
+    /* 3D Canvas Area */
+    .viewport-area {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, #172554 0%, #090d16 80%);
+      display: flex;
+      flex-direction: column;
+    }
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      --poster-color: transparent;
+      outline: none;
+    }
+    /* Floating Overlays */
+    .viewport-top-hud {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .hud-chip {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hud-chip.green {
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+    .hud-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .viewport-bottom-controls {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      padding: 6px 12px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .ctrl-btn {
+      background: transparent;
+      color: #cbd5e1;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ctrl-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .ctrl-btn.active {
+      background: var(--brand);
+      color: #ffffff;
+    }
+    /* Inspector Sidebar */
+    .inspector-sidebar {
+      background: #0f172a;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+    }
+    .sidebar-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .sidebar-subtitle {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 20px;
+    }
+    .spec-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .spec-card h4 {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .spec-row:last-child {
+      border-bottom: none;
+    }
+    .spec-label {
+      color: #94a3b8;
+    }
+    .spec-val {
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .feature-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .ft-tag {
+      background: rgba(0, 56, 255, 0.2);
+      border: 1px solid rgba(0, 56, 255, 0.4);
+      color: #93c5fd;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .btn-full {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav style="background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="https://res.cloudinary.com/djy0vsvfg/image/upload/v1774822889/logo_highres_hdmcey.png" alt="Nexray Logo">
+        <span class="nav-logo-text" style="color: #ffffff;">NEX<span class="logo-accent">RAY</span><span class="nav-sub" style="color: #64748b;">// 3D</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link" style="color: #cbd5e1;">Home</a>
+        <a href="services.html" class="nav-link" style="color: #cbd5e1;">Services</a>
+        <a href="portfolio.html" class="nav-link" style="color: #cbd5e1;">Portfolio</a>
+        <a href="viewer.html" class="nav-link active" style="color: #CCFF00;">3D Viewer</a>
+        <a href="pricing.html" class="nav-link" style="color: #cbd5e1;">Pricing &amp; Calc</a>
+        <a href="print-guide.html" class="nav-link" style="color: #cbd5e1;">Print Guide</a>
+        <a href="about.html" class="nav-link" style="color: #cbd5e1;">Studio</a>
+        <a href="contact.html" class="btn-brand">Commission a Sculpt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 3D Studio Workspace Layout -->
+  <div class="viewer-layout">
+    
+    <!-- 3D Viewport -->
+    <div class="viewport-area">
+      <!-- Top HUD Chips -->
+      <div class="viewport-top-hud">
+        <div class="hud-chip green">
+          <span class="hud-dot"></span>
+          <span>100% WATERTIGHT SOLID MANIFOLD</span>
+        </div>
+        <div class="hud-chip">
+          <span>HEIGHT: 152.4 mm (6.00 IN)</span>
+        </div>
+        <div class="hud-chip">
+          <span>BASE OFFSET: Z = 0.00 mm</span>
+        </div>
+      </div>
+
+      <!-- Real-Time Interactive 3D Model Viewer -->
+      <model-viewer 
+        id="studio-viewer"
+        src="rama_model.glb" 
+        alt="Lord Kodanda Rama 6-Inch Sculpt by Nexray 3D" 
+        auto-rotate 
+        auto-rotate-delay="1000"
+        rotation-per-second="20deg"
+        camera-controls 
+        touch-action="pan-y" 
+        shadow-intensity="1.5" 
+        shadow-softness="0.8" 
+        exposure="1.1"
+        camera-orbit="0deg 75deg 105%"
+        field-of-view="30deg">
+      </model-viewer>
+
+      <!-- Viewport Bottom Control Deck -->
+      <div class="viewport-bottom-controls">
+        <button class="ctrl-btn active" id="btn-spin" onclick="toggleSpin()">Auto Spin: ON</button>
+        <button class="ctrl-btn" onclick="resetView()">Reset View</button>
+        <button class="ctrl-btn" onclick="setViewAngle('front')">Front</button>
+        <button class="ctrl-btn" onclick="setViewAngle('side')">Side</button>
+        <button class="ctrl-btn" onclick="setViewAngle('top')">Top</button>
+      </div>
+    </div>
+
+    <!-- Right Inspector Sidebar -->
+    <div class="inspector-sidebar">
+      <div>
+        <div class="sidebar-title">LORD KODANDA RAMA</div>
+        <div class="sidebar-subtitle">Project Ref: #NEX-2026-RAMA &bull; Master Sculpt</div>
+
+        <!-- Bounding Box Dimensions -->
+        <div class="spec-card">
+          <h4>Bounding Box Dimensions</h4>
+          <div class="spec-row">
+            <span class="spec-label">Z Height:</span>
+            <span class="spec-val">152.40 mm (6.00 in)</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">X Width (Stance):</span>
+            <span class="spec-val">73.40 mm (2.89 in)</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Y Depth:</span>
+            <span class="spec-val">56.60 mm (2.23 in)</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Volume:</span>
+            <span class="spec-val">~162.8 cm&sup3; solid</span>
+          </div>
+        </div>
+
+        <!-- Mesh Topology Verification -->
+        <div class="spec-card">
+          <h4>Topology &amp; Manifold Check</h4>
+          <div class="spec-row">
+            <span class="spec-label">Non-Manifold Edges:</span>
+            <span class="spec-val" style="color: #34d399;">0 (Flawless)</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Boundary Open Holes:</span>
+            <span class="spec-val" style="color: #34d399;">0 (100% Watertight)</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Solid Shell Count:</span>
+            <span class="spec-val">1 Unified Manifold</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Master STL Triangles:</span>
+            <span class="spec-val">2,203,680 Poly</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Web Stream Triangles:</span>
+            <span class="spec-val">90,000 Poly (1.54 MB)</span>
+          </div>
+        </div>
+
+        <!-- Iconographic Engineering -->
+        <div class="spec-card">
+          <h4>Iconographic Restorations</h4>
+          <div class="feature-tag-list">
+            <span class="ft-tag">4-Arrow Fanned Quiver</span>
+            <span class="ft-tag">Varada Mudra Hand</span>
+            <span class="ft-tag">Anchored Bow Stave</span>
+            <span class="ft-tag">Thickened Sacred Dhoti</span>
+            <span class="ft-tag">Sub-20&mu;m Ornaments</span>
+            <span class="ft-tag">Z=0 Flat Base</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div>
+        <a href="contact.html?tier=sculpt" class="btn-lime btn-full" style="display: block; padding: 12px; font-size: 13px;">
+          Commission Similar Figurine &rarr;
+        </a>
+        <a href="print-guide.html" class="btn-brand btn-full" style="display: block; padding: 12px; font-size: 13px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);">
+          View Slicing Handbook
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    const mv = document.getElementById('studio-viewer');
+    let isSpinning = true;
+
+    function toggleSpin() {
+      isSpinning = !isSpinning;
+      mv.autoRotate = isSpinning;
+      const btn = document.getElementById('btn-spin');
+      btn.innerText = isSpinning ? 'Auto Spin: ON' : 'Auto Spin: OFF';
+      btn.classList.toggle('active', isSpinning);
+    }
+
+    function resetView() {
+      mv.cameraOrbit = '0deg 75deg 105%';
+      mv.fieldOfView = '30deg';
+    }
+
+    function setViewAngle(angle) {
+      if (angle === 'front') {
+        mv.cameraOrbit = '0deg 75deg 105%';
+      } else if (angle === 'side') {
+        mv.cameraOrbit = '90deg 75deg 105%';
+      } else if (angle === 'top') {
+        mv.cameraOrbit = '0deg 10deg 110%';
+      }
+    }
+  </script>
+
+</body>
+</html>

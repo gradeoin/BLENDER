@@ -25,3 +25,8 @@ $RECYCLE.BIN/
 *.stl
 *.obj
 *.fbx
+
+# Temporary scratch scripts
+*.py
+nexray_in_source.html
+nexray_global.css

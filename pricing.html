@@ -3,13 +3,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing &amp; Commission Tiers // NEXRAY 3D</title>
-  <meta name="description" content="Transparent pricing for 3D sculpting, STL repair, and physical additive manufacturing commissions by Nexray 3D.">
+  <title>Pricing &amp; Live Commission Calculator // NEXRAY 3D</title>
+  <meta name="description" content="Transparent pricing and interactive cost calculator for custom 3D sculpting, STL mesh repair, and physical resin additive manufacturing commissions by Nexray 3D.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
+    /* Interactive Calculator Container */
+    .calc-card {
+      background: #ffffff;
+      border: 2px solid var(--brand);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 44px rgba(0, 56, 255, 0.14);
+      padding: 40px;
+      margin-bottom: 60px;
+    }
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 36px;
+      margin-top: 24px;
+    }
+    @media (max-width: 860px) {
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+      .calc-card {
+        padding: 24px;
+      }
+    }
+    .calc-group {
+      margin-bottom: 22px;
+    }
+    .calc-label {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .slider-val {
+      color: var(--brand);
+      font-size: 15px;
+    }
+    input[type=range] {
+      width: 100%;
+      height: 8px;
+      border-radius: 5px;
+      background: #e2e8f0;
+      outline: none;
+      accent-color: var(--brand);
+    }
+    .tier-select-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 600px) {
+      .tier-select-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .tier-option {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 12px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tier-option:hover {
+      border-color: var(--brand);
+    }
+    .tier-option.active {
+      background: rgba(0, 56, 255, 0.05);
+      border-color: var(--brand);
+      box-shadow: 0 4px 12px rgba(0, 56, 255, 0.12);
+    }
+    .tier-option .title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .tier-option .price {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--brand);
+      margin-top: 4px;
+    }
+    .addon-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .addon-box:hover {
+      border-color: var(--brand);
+    }
+    .addon-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-2);
+    }
+    .addon-price {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--brand);
+    }
+    /* Calculator Summary Box */
+    .calc-summary-box {
+      background: #0f172a;
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .summary-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 12px;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 10px;
+      color: #94a3b8;
+    }
+    .summary-row.total {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 15px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .big-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      margin: 12px 0 6px 0;
+    }
+    .split-terms {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.5;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 16px 0 24px 0;
+    }
+
+    /* Standard Pricing Cards */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -96,26 +265,35 @@
       color: #16a34a;
       font-weight: 900;
     }
-    .faq-section {
-      max-width: 800px;
-      margin: 80px auto 20px auto;
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 36px;
+    }
+    @media (max-width: 760px) {
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
     }
     .faq-item {
       background: #ffffff;
       border: 1px solid var(--card-border);
       border-radius: var(--radius-sm);
-      padding: 22px 26px;
-      margin-bottom: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-card);
     }
-    .faq-item h4 {
-      font-size: 16px;
-      margin-bottom: 8px;
+    .faq-q {
+      font-size: 15px;
+      font-weight: 800;
       color: var(--text);
+      margin-bottom: 8px;
     }
-    .faq-item p {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.7;
+    .faq-a {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.65;
     }
   </style>
 </head>
@@ -130,115 +308,329 @@
       </a>
       <div class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
         <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="viewer.html" class="nav-link">3D Viewer</a>
+        <a href="pricing.html" class="nav-link active">Pricing &amp; Calc</a>
         <a href="print-guide.html" class="nav-link">Print Guide</a>
-        <a href="pricing.html" class="nav-link active">Pricing</a>
+        <a href="about.html" class="nav-link">Studio</a>
         <a href="contact.html" class="btn-brand">Commission a Sculpt</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-banner">
-    <div class="hero-badge">TRANSPARENT RATES</div>
-    <h1>Simple, Predictable <span>Studio Pricing</span></h1>
+  <!-- Header -->
+  <header class="hero-banner">
+    <div class="hero-badge">&bull; TRANSPARENT ATELIER PRICING &bull;</div>
+    <h1>COMMISSION TIERS &amp; <span class="highlight">CALCULATOR</span></h1>
     <p class="hero-sub">
-      From single-file mesh repairs to custom master sculptural commissions—zero hidden fees.
+      Calculate your custom sculpt or mesh repair investment instantly. All digital commissions include our Zero Slicer Error Guarantee.
     </p>
-  </section>
+  </header>
 
-  <!-- Pricing Cards -->
-  <section class="section">
+  <main class="section">
+
+    <!-- Interactive Live Calculator -->
+    <div class="calc-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <span style="font-size: 11px; font-weight: 800; color: var(--brand); letter-spacing: 1.5px; text-transform: uppercase;">INTERACTIVE TOOL</span>
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 800;">LIVE COMMISSION ESTIMATOR</h2>
+        </div>
+        <span style="background: rgba(16, 185, 129, 0.1); color: #059669; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3);">
+          &bull; REAL-TIME PRICING (INR)
+        </span>
+      </div>
+
+      <div class="calc-grid">
+        <!-- Controls Column -->
+        <div>
+          <!-- Step 1: Tier Selection -->
+          <div class="calc-group">
+            <label class="calc-label">1. Choose Service Tier</label>
+            <div class="tier-select-grid">
+              <div class="tier-option" id="opt-repair" onclick="selectCalcTier('repair')">
+                <div class="title">STL Repair</div>
+                <div class="price">&#8377;799</div>
+              </div>
+              <div class="tier-option active" id="opt-sculpt" onclick="selectCalcTier('sculpt')">
+                <div class="title">Custom Sculpt</div>
+                <div class="price">&#8377;1,499</div>
+              </div>
+              <div class="tier-option" id="opt-turnkey" onclick="selectCalcTier('turnkey')">
+                <div class="title">Turnkey Print</div>
+                <div class="price">&#8377;3,999</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Figurine Height Slider -->
+          <div class="calc-group">
+            <div class="calc-label">
+              <span>2. Desired Finished Height</span>
+              <span class="slider-val" id="height-display">6.00 Inches (152.4 mm)</span>
+            </div>
+            <input type="range" id="height-slider" min="3" max="14" step="0.5" value="6" oninput="updateCalculator()">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 6px;">
+              <span>3" Miniature (76mm)</span>
+              <span>6" Standard Desk</span>
+              <span>10" Temple Idol</span>
+              <span>14" Altar Statue</span>
+            </div>
+          </div>
+
+          <!-- Step 3: Add-on Checkboxes -->
+          <div class="calc-group">
+            <label class="calc-label">3. Optional Engineering Add-ons</label>
+            
+            <label class="addon-box">
+              <div class="addon-left">
+                <input type="checkbox" id="addon-supports" onchange="updateCalculator()">
+                <span>Pre-Supported Scene (Chitubox &amp; Lychee)</span>
+              </div>
+              <span class="addon-price">+&#8377;300</span>
+            </label>
+
+            <label class="addon-box">
+              <div class="addon-left">
+                <input type="checkbox" id="addon-hollow" onchange="updateCalculator()">
+                <span>Internal Hollowing &amp; Dual Suction Drain Holes</span>
+              </div>
+              <span class="addon-price">+&#8377;250</span>
+            </label>
+
+            <label class="addon-box">
+              <div class="addon-left">
+                <input type="checkbox" id="addon-rush" onchange="updateCalculator()">
+                <span>Priority 24-Hour Express Dispatch</span>
+              </div>
+              <span class="addon-price">+&#8377;500</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Summary Column -->
+        <div class="calc-summary-box">
+          <div>
+            <div class="summary-title">ESTIMATED INVESTMENT</div>
+            
+            <div class="summary-row">
+              <span>Selected Discipline:</span>
+              <strong style="color: #ffffff;" id="summary-tier-name">Custom Digital Sculpt</strong>
+            </div>
+            <div class="summary-row">
+              <span>Physical Height:</span>
+              <strong style="color: #ffffff;" id="summary-height">6.00 Inches (152.4 mm)</strong>
+            </div>
+            <div class="summary-row">
+              <span>Base Engineering Rate:</span>
+              <strong style="color: #ffffff;" id="summary-base-rate">&#8377;1,499</strong>
+            </div>
+            <div class="summary-row">
+              <span>Scale Multiplier / Extras:</span>
+              <strong style="color: #ffffff;" id="summary-extras">&#8377;0</strong>
+            </div>
+
+            <div class="summary-row total">
+              <span>Total Estimated Investment:</span>
+            </div>
+            <div class="big-price" id="summary-total-price">&#8377;1,499 INR</div>
+
+            <div class="split-terms">
+              <strong>Milestone Terms:</strong><br>
+              &bull; 50% Advance to start: <strong id="summary-advance">&#8377;750 INR</strong><br>
+              &bull; 50% Balance on final delivery: <strong id="summary-balance">&#8377;749 INR</strong>
+            </div>
+          </div>
+
+          <button class="btn-lime" style="width: 100%; border: none; cursor: pointer; text-align: center; font-size: 14px;" onclick="bookConfiguration()">
+            Book This Configuration &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transparent Commission Tiers Comparison -->
+    <div class="section-head">
+      <h2>COMMISSION TIERS OVERVIEW</h2>
+      <p>Select the service level tailored to your 3D workflow and manufacturing needs.</p>
+    </div>
+
     <div class="pricing-grid">
-      
+
       <!-- Tier 1 -->
       <div class="pricing-card">
-        <div class="tier-name">Mesh Repair &amp; Slicer Prep</div>
-        <div class="tier-price">&#8377;799 <span>/ file</span></div>
-        <div class="tier-desc">For creators with existing 3D files that fail in slicers due to non-manifold edges or holes.</div>
+        <h3 class="tier-name">Mesh Repair &amp; Slicing</h3>
+        <p class="tier-desc">For 3D scans, AI models, or broken meshes with manifold errors, non-flat bases, or boundary holes.</p>
+        <div class="tier-price">&#8377;799 <span>/ model</span></div>
         <ul class="tier-features">
-          <li><span class="check">✓</span> 100% Watertight Manifold Repair</li>
-          <li><span class="check">✓</span> Planar Base Leveling (Z = 0 mm)</li>
-          <li><span class="check">✓</span> Normal Orientation Correction</li>
-          <li><span class="check">✓</span> Decimation under 100 MB Limit</li>
-          <li><span class="check">✓</span> 24-Hour Express Turnaround</li>
+          <li><span class="check">&#10003;</span> 100% Watertight Manifold Repair</li>
+          <li><span class="check">&#10003;</span> Zero Non-Manifold Edges</li>
+          <li><span class="check">&#10003;</span> Flat Base Cut to Z = 0.00mm</li>
+          <li><span class="check">&#10003;</span> Slicer Validation (Bambu / Lychee)</li>
+          <li><span class="check">&#10003;</span> 24h Turnaround</li>
         </ul>
-        <a href="contact.html?service=repair" class="btn-brand" style="text-align: center; background: #0f172a;">Submit File for Repair</a>
+        <a href="contact.html?tier=repair" class="btn-brand" style="text-align: center;">Choose Mesh Repair</a>
       </div>
 
       <!-- Tier 2 (Featured) -->
       <div class="pricing-card featured">
-        <div class="popular-pill">Most Popular</div>
-        <div class="tier-name">Custom 3D Sculpt</div>
-        <div class="tier-price">&#8377;1,499 <span>&ndash; &#8377;2,499</span></div>
-        <div class="tier-desc">Complete digital sculpting from photo reference or sketches into a print-ready master STL.</div>
+        <span class="popular-pill">MOST POPULAR COMMISSION</span>
+        <h3 class="tier-name" style="color: var(--brand);">Custom Digital Sculpt</h3>
+        <p class="tier-desc">Complete bespoke 3D sculpting from reference photos, deity iconography, and print-ready STL output.</p>
+        <div class="tier-price">&#8377;1,499 <span>/ sculpt</span></div>
         <ul class="tier-features">
-          <li><span class="check">✓</span> <strong>Full Sculptural Modeling</strong> from Photo Reference</li>
-          <li><span class="check">✓</span> <strong>Calibrated Scale</strong> (Exact 4", 6", 8", or 10")</li>
-          <li><span class="check">✓</span> <strong>Intricate Micro-Reliefs</strong> (Jewelry, Faces, Fabric)</li>
-          <li><span class="check">✓</span> <strong>2.0M+ Polygon Density</strong> Single Solid Shell</li>
-          <li><span class="check">✓</span> <strong>Tailored Print Profiles</strong> for FDM &amp; Resin</li>
-          <li><span class="check">✓</span> <strong>Personal &amp; Commercial Print License</strong></li>
+          <li><span class="check">&#10003;</span> Authentic Sacred Iconography &amp; Mudras</li>
+          <li><span class="check">&#10003;</span> Multi-Million Polygon Binary STL</li>
+          <li><span class="check">&#10003;</span> Thickened Drapery &amp; Anchored Staves</li>
+          <li><span class="check">&#10003;</span> Web 3D Preview (GLB Format)</li>
+          <li><span class="check">&#10003;</span> Slicing Handbook &amp; Infill Specs</li>
+          <li><span class="check">&#10003;</span> 2 Rounds of Sculpting Revisions</li>
         </ul>
-        <a href="contact.html?service=sculpt" class="btn-lime" style="text-align: center;">Commission a Custom Sculpt</a>
+        <a href="contact.html?tier=sculpt" class="btn-lime" style="text-align: center;">Commission Sculpt</a>
       </div>
 
       <!-- Tier 3 -->
       <div class="pricing-card">
-        <div class="tier-name">Turnkey Sculpt &amp; Print</div>
-        <div class="tier-price">&#8377;3,999+ <span>/ finished idol</span></div>
-        <div class="tier-desc">We sculpt the model, 3D print it on 8K resin or tough filament, clean, cure, and ship to your door.</div>
+        <h3 class="tier-name">Turnkey Physical Fabrication</h3>
+        <p class="tier-desc">End-to-end service: custom 3D sculpting plus 8K/12K resin physical fabrication and safe door delivery.</p>
+        <div class="tier-price">&#8377;3,999 <span>/ piece</span></div>
         <ul class="tier-features">
-          <li><span class="check">✓</span> Custom 3D Digital Sculpting Included</li>
-          <li><span class="check">✓</span> Physical 8K Resin or Matte Filament Output</li>
-          <li><span class="check">✓</span> Professional Support Removal &amp; UV Curing</li>
-          <li><span class="check">✓</span> Protective Bubble Box Packaging</li>
-          <li><span class="check">✓</span> Pan-India Courier Delivery with Tracking</li>
+          <li><span class="check">&#10003;</span> Everything in Custom Digital Sculpt</li>
+          <li><span class="check">&#10003;</span> 8K / 12K Ultra-Resin Physical Print</li>
+          <li><span class="check">&#10003;</span> Chemical Wash &amp; UV Precision Cure</li>
+          <li><span class="check">&#10003;</span> Hand-finished &amp; Primed in Matte Gray</li>
+          <li><span class="check">&#10003;</span> Pan-India Shockproof Packaging</li>
+          <li><span class="check">&#10003;</span> 5 to 7 Business Days Delivery</li>
         </ul>
-        <a href="contact.html?service=turnkey" class="btn-brand" style="text-align: center; background: #0f172a;">Inquire for Turnkey Print</a>
+        <a href="contact.html?tier=turnkey" class="btn-brand" style="text-align: center;">Commission Turnkey</a>
       </div>
 
     </div>
 
-    <!-- FAQ Section -->
-    <div class="faq-section">
+    <!-- Commercial FAQ -->
+    <div style="margin-top: 80px;">
       <div class="section-head">
-        <h2>Frequently Asked Questions</h2>
-        <p>Everything you need to know about commissioning 3D assets with Nexray.</p>
+        <h2>FREQUENTLY ASKED QUESTIONS</h2>
+        <p>Everything you need to know about commissioning 3D sculpts and payment terms.</p>
       </div>
 
-      <div class="faq-item">
-        <h4>What file formats do I receive?</h4>
-        <p>You receive the high-resolution binary STL file packaged in a verified ZIP archive, along with recommended slicer settings. Upon request, we can also provide OBJ or 3MF formats.</p>
-      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-q">How does the 50/50 payment milestone work?</div>
+          <div class="faq-a">To lock your production queue slot, you pay a 50% advance via UPI (Google Pay, PhonePe, Paytm). Once the sculpt is finalized and you approve the turnaround renders and web 3D model, you pay the remaining 50% balance, and we instantly dispatch the master STL package.</div>
+        </div>
 
-      <div class="faq-item">
-        <h4>Can I rescale the 6-inch file in my slicer?</h4>
-        <p>Yes! Because our meshes are 100% solid and watertight, you can scale them up or down in Bambu Studio, OrcaSlicer, or Cura without creating holes or geometry artifacts.</p>
-      </div>
+        <div class="faq-item">
+          <div class="faq-q">What file formats will I receive?</div>
+          <div class="faq-a">You receive the full-resolution Master Binary STL (compatible with Chitubox, Lychee, Bambu Studio, OrcaSlicer, PrusaSlicer, and Cura), an interactive Web GLB model for online viewing, and our official Slicing Handbook.</div>
+        </div>
 
-      <div class="faq-item">
-        <h4>How do payments work?</h4>
-        <p>For custom commissions, we accept UPI, Google Pay, PhonePe, and Bank Transfer. We typically take an advance to begin modeling, and deliver the production file upon completion.</p>
+        <div class="faq-item">
+          <div class="faq-q">What is your Zero Slicer Error Guarantee?</div>
+          <div class="faq-a">If any slicer flags a non-manifold edge, zero-volume wall, inverted normal, or orientation hole on our files, notify our engineering desk at <a href="mailto:support@nexray.in">support@nexray.in</a>. We will diagnose and repair the file within 12 hours at zero charge.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Can you adjust the size to match my altar or display case?</div>
+          <div class="faq-a">Yes! Use our calculator above to set your required height (from 3 inches to 14+ inches). We will scale the geometry with millimeter precision and adjust fragile features (such as bow staves and fingers) to ensure structural integrity at your chosen scale.</div>
+        </div>
       </div>
     </div>
-  </section>
+
+  </main>
 
   <!-- Footer -->
   <footer>
     <div class="footer-nav">
       <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
       <a href="portfolio.html">Portfolio</a>
+      <a href="viewer.html">3D Viewer</a>
+      <a href="pricing.html">Pricing &amp; Calculator</a>
       <a href="print-guide.html">Print Guide</a>
-      <a href="pricing.html">Pricing</a>
+      <a href="about.html">Studio</a>
       <a href="contact.html">Contact</a>
-      <a href="https://nexray.in">Nexray Main Site</a>
+      <a href="email-hub.html">Studio Email Hub</a>
     </div>
-    <p>&copy; 2026 <strong>NEXRAY 3D</strong> &bull; A Division of <a href="https://nexray.in">nexray.in</a>. All rights reserved.</p>
-    <p style="margin-top: 8px; font-size: 12px; color: #94a3b8;">
-      Studio Inquiries &bull; <a href="mailto:info@nexray.in">info@nexray.in</a>
+    <p>&copy; 2026 NEXRAY 3D Atelier. A division of <a href="https://nexray.in">nexray.in</a>. All rights reserved.</p>
+    <p style="margin-top: 6px; font-size: 12px; color: #94a3b8;">
+      Official Contacts: <a href="mailto:info@nexray.in">info@nexray.in</a> &bull; <a href="mailto:dev@nexray.in">dev@nexray.in</a> &bull; <a href="mailto:support@nexray.in">support@nexray.in</a>
     </p>
   </footer>
+
+  <script>
+    let activeTier = 'sculpt';
+
+    function selectCalcTier(tier) {
+      activeTier = tier;
+      document.querySelectorAll('.tier-option').forEach(el => el.classList.remove('active'));
+      document.getElementById('opt-' + tier).classList.add('active');
+      updateCalculator();
+    }
+
+    function updateCalculator() {
+      const height = parseFloat(document.getElementById('height-slider').value);
+      const mm = (height * 25.4).toFixed(1);
+      document.getElementById('height-display').innerText = `${height.toFixed(2)} Inches (${mm} mm)`;
+
+      let basePrice = 1499;
+      let tierName = 'Custom Digital Sculpt';
+
+      if (activeTier === 'repair') {
+        basePrice = 799;
+        tierName = 'STL Mesh Repair & Manifolding';
+      } else if (activeTier === 'turnkey') {
+        basePrice = 3999;
+        tierName = 'Turnkey Physical Fabrication';
+      }
+
+      // Height scaling multiplier for physical prints or large sculpts > 6 inches
+      let scaleExtra = 0;
+      if (height > 6) {
+        const extraInches = height - 6;
+        if (activeTier === 'turnkey') {
+          scaleExtra = Math.round(extraInches * 450); // Resin volume grows
+        } else if (activeTier === 'sculpt') {
+          scaleExtra = Math.round(extraInches * 150); // Detail density grows
+        }
+      }
+
+      // Add-ons
+      let addonsCost = 0;
+      if (document.getElementById('addon-supports').checked) addonsCost += 300;
+      if (document.getElementById('addon-hollow').checked) addonsCost += 250;
+      if (document.getElementById('addon-rush').checked) addonsCost += 500;
+
+      const totalExtras = scaleExtra + addonsCost;
+      const total = basePrice + totalExtras;
+      const advance = Math.round(total * 0.5);
+      const balance = total - advance;
+
+      document.getElementById('summary-tier-name').innerText = tierName;
+      document.getElementById('summary-height').innerText = `${height.toFixed(2)} Inches (${mm} mm)`;
+      document.getElementById('summary-base-rate').innerText = '₹' + basePrice.toLocaleString('en-IN');
+      document.getElementById('summary-extras').innerText = '₹' + totalExtras.toLocaleString('en-IN');
+      document.getElementById('summary-total-price').innerText = '₹' + total.toLocaleString('en-IN') + ' INR';
+      document.getElementById('summary-advance').innerText = '₹' + advance.toLocaleString('en-IN') + ' INR';
+      document.getElementById('summary-balance').innerText = '₹' + balance.toLocaleString('en-IN') + ' INR';
+    }
+
+    function bookConfiguration() {
+      const height = document.getElementById('height-slider').value;
+      const total = document.getElementById('summary-total-price').innerText.replace(/[^0-9]/g, '');
+      let addons = [];
+      if (document.getElementById('addon-supports').checked) addons.push('pre-supports');
+      if (document.getElementById('addon-hollow').checked) addons.push('hollowing');
+      if (document.getElementById('addon-rush').checked) addons.push('rush-24h');
+
+      const url = `contact.html?tier=${activeTier}&height=${height}&total=${total}&addons=${addons.join(',')}`;
+      window.location.href = url;
+    }
+
+    // Initialize on load
+    updateCalculator();
+  </script>
 
 </body>
 </html>

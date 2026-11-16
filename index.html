@@ -9,200 +9,124 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- Google Model Viewer for Real-Time 3D Web Inspection -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
   <style>
-    /* Page specific styles */
-    .ticker {
-      background: #0f172a;
-      color: #94a3b8;
-      padding: 14px 20px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      justify-content: center;
-      gap: 36px;
-      flex-wrap: wrap;
-    }
-    .ticker-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .ticker-dot {
-      color: var(--accent);
-      font-size: 10px;
-    }
-    .showcase-wrapper {
-      max-width: 1100px;
-      margin: -40px auto 60px auto;
-      padding: 0 20px;
+    /* Interactive 3D Viewer Styles */
+    .viewer-container {
       position: relative;
-      z-index: 10;
-    }
-    .showcase-card {
-      background: #ffffff;
-      border-radius: var(--radius);
-      border: 1px solid var(--card-border);
-      box-shadow: var(--shadow-brand);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-    @media(min-width: 880px) {
-      .showcase-card {
-        grid-template-columns: 1.15fr 1fr;
-      }
-    }
-    .showcase-media {
+      width: 100%;
+      height: 480px;
       background: #0b1120;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border-radius: 12px;
       overflow: hidden;
     }
-    .showcase-media img {
+    model-viewer {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      display: block;
+      --poster-color: transparent;
+      outline: none;
     }
-    .showcase-content {
-      padding: 38px 36px;
+    .view-toggles {
+      position: absolute;
+      top: 14px;
+      left: 14px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      gap: 8px;
+      z-index: 10;
     }
-    .project-badge {
-      display: inline-block;
+    .view-toggle-btn {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 6px 14px;
+      border-radius: 20px;
       font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: var(--brand);
-      text-transform: uppercase;
-      margin-bottom: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .project-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--text);
-      text-transform: uppercase;
-      letter-spacing: -0.5px;
-      line-height: 1.2;
+    .view-toggle-btn.active {
+      background: var(--brand);
+      color: #ffffff;
+      border-color: var(--brand);
     }
-    .project-subtitle {
-      font-size: 14px;
+    .view-hint {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      color: #94a3b8;
+      font-size: 11px;
       font-weight: 600;
-      color: var(--brand);
-      margin-bottom: 16px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      pointer-events: none;
+      white-space: nowrap;
     }
-    .project-desc {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 22px;
-    }
-    .specs-grid {
+    /* Material Swatches */
+    .material-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-    .spec-item {
-      background: var(--bg-2);
-      border: 1px solid rgba(0, 0, 0, 0.04);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-    }
-    .spec-label {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-    .spec-value {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--text);
-      margin-top: 2px;
-    }
-    /* Gallery Grid */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
       margin-top: 32px;
     }
-    .gallery-item {
-      background: #0f172a;
+    .mat-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
       border-radius: var(--radius-sm);
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      position: relative;
-      aspect-ratio: 4/3;
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s;
     }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s ease;
+    .mat-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 56, 255, 0.25);
     }
-    .gallery-item:hover img {
-      transform: scale(1.05);
+    .mat-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-bottom: 12px;
+      border: 1px solid rgba(0,0,0,0.1);
     }
-    .gallery-label {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 100%);
-      color: #fff;
-      padding: 16px 12px 8px 12px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    /* Workflow Steps */
-    .steps-grid {
+    /* Reviews Grid */
+    .reviews-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
       margin-top: 36px;
     }
-    .step-card {
+    .review-card {
       background: #ffffff;
       border: 1px solid var(--card-border);
       border-radius: var(--radius);
-      padding: 28px;
-      position: relative;
+      padding: 26px 24px;
+      box-shadow: var(--shadow-card);
     }
-    .step-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 42px;
-      font-weight: 800;
-      color: var(--brand);
-      opacity: 0.2;
-      line-height: 1;
-      margin-bottom: 12px;
+    .stars {
+      color: #eab308;
+      font-size: 15px;
+      margin-bottom: 10px;
     }
-    .step-card h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-    .step-card p {
+    .review-text {
       font-size: 14px;
-      color: var(--text-muted);
+      color: var(--text-2);
       line-height: 1.6;
+      margin-bottom: 14px;
+      font-style: italic;
     }
-    .cta-banner {
-      background: linear-gradient(135deg, #0038FF 0%, #001A99 100%);
-      color: #fff;
-      border-radius: var(--radius);
-      padding: 56px 36px;
-      text-align: center;
-      margin-top: 60px;
+    .reviewer {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .reviewer-sub {
+      font-size: 11px;
+      color: var(--text-muted);
     }
   </style>
 </head>
@@ -217,9 +141,12 @@
       </a>
       <div class="nav-links">
         <a href="index.html" class="nav-link active">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
         <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="viewer.html" class="nav-link">3D Viewer</a>
+        <a href="pricing.html" class="nav-link">Pricing &amp; Calc</a>
         <a href="print-guide.html" class="nav-link">Print Guide</a>
-        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">Studio</a>
         <a href="contact.html" class="btn-brand">Commission a Sculpt</a>
       </div>
     </div>
@@ -229,7 +156,7 @@
   <div class="ticker">
     <div class="ticker-item"><span class="ticker-dot">●</span> 100% Watertight Manifold Shells</div>
     <div class="ticker-item"><span class="ticker-dot">●</span> 0.05 mm Micro-Relief Resolution</div>
-    <div class="ticker-item"><span class="ticker-dot">●</span> Bambu Studio &amp; OrcaSlicer Native</div>
+    <div class="ticker-item"><span class="ticker-dot">●</span> Real-Time 3D Web Inspection</div>
     <div class="ticker-item"><span class="ticker-dot">●</span> True Z = 0.00 mm Planar Adhesion</div>
   </div>
 
@@ -242,17 +169,49 @@
     <p class="hero-sub">
       From high-detail sacred deity sculptures to precision collectible assets—engineered 100% watertight and slicer-ready.
     </p>
-    <div>
+    <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
       <a href="contact.html" class="btn-lime">Start a 3D Commission</a>
+      <a href="pricing.html" class="nav-btn" style="background: rgba(255,255,255,0.12); color: #ffffff; border-color: rgba(255,255,255,0.3); padding: 12px 24px; border-radius: var(--radius-full); font-size: 13px;">View Pricing Tiers &rarr;</a>
     </div>
   </section>
 
-  <!-- Featured Master Showcase Card -->
+  <!-- Featured Master Showcase Card with Interactive 3D Model Viewer -->
   <div class="showcase-wrapper">
     <div class="showcase-card">
-      <div class="showcase-media">
-        <img src="SuperProfile_Cover_1280x720.png" alt="Lord Kodanda Rama 6-Inch Sculpt">
+      
+      <!-- Interactive 3D / Render Media Pane -->
+      <div class="viewer-container">
+        
+        <!-- Toggle Buttons -->
+        <div class="view-toggles">
+          <button id="btn-3d" class="view-toggle-btn active" onclick="switchView('3d')">🔄 Interactive 3D</button>
+          <button id="btn-render" class="view-toggle-btn" onclick="switchView('render')">📸 Studio Render</button>
+        </div>
+
+        <!-- Real-Time 3D Canvas -->
+        <model-viewer 
+          id="rama-viewer"
+          src="rama_model.glb" 
+          alt="Lord Kodanda Rama Interactive 3D Model" 
+          auto-rotate 
+          rotation-per-second="25deg"
+          camera-controls 
+          touch-action="pan-y" 
+          shadow-intensity="1.4" 
+          shadow-softness="0.8" 
+          exposure="1.05"
+          camera-orbit="0deg 80deg 105%"
+          min-camera-orbit="auto auto 50%"
+          max-camera-orbit="auto auto 200%">
+        </model-viewer>
+
+        <!-- Static Render Fallback / Alternative View -->
+        <img id="static-render" src="SuperProfile_Cover_1280x720.png" alt="Lord Kodanda Rama Sculpt" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+
+        <div id="view-hint" class="view-hint">👆 Drag to rotate &bull; Pinch to zoom</div>
       </div>
+
+      <!-- Content Column -->
       <div class="showcase-content">
         <span class="project-badge">FEATURED PRODUCTION MASTER</span>
         <h2 class="project-title">Lord Kodanda Rama</h2>
@@ -281,12 +240,37 @@
         </div>
 
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <a href="portfolio.html" class="btn-brand" style="flex: 1; text-align: center;">View Project Case Study</a>
-          <a href="print-guide.html" class="nav-btn" style="padding: 10px 18px; border-radius: 9999px; text-decoration: none; font-size: 13px; font-weight: 700; color: var(--brand); border: 1px solid rgba(0,56,255,0.3); display: flex; align-items: center;">Print Guide &rarr;</a>
+          <a href="contact.html?service=sculpt" class="btn-brand" style="flex: 1; text-align: center;">Order This Model &bull; &#8377;1,500</a>
+          <a href="portfolio.html" class="nav-btn" style="padding: 10px 18px; border-radius: 9999px; text-decoration: none; font-size: 13px; font-weight: 700; color: var(--brand); border: 1px solid rgba(0,56,255,0.3); display: flex; align-items: center;">Case Study &rarr;</a>
         </div>
       </div>
+
     </div>
   </div>
+
+  <script>
+    function switchView(mode) {
+      const viewer = document.getElementById('rama-viewer');
+      const render = document.getElementById('static-render');
+      const btn3d = document.getElementById('btn-3d');
+      const btnRender = document.getElementById('btn-render');
+      const hint = document.getElementById('view-hint');
+
+      if (mode === '3d') {
+        viewer.style.display = 'block';
+        render.style.display = 'none';
+        btn3d.classList.add('active');
+        btnRender.classList.remove('active');
+        hint.style.display = 'block';
+      } else {
+        viewer.style.display = 'none';
+        render.style.display = 'block';
+        btn3d.classList.remove('active');
+        btnRender.classList.add('active');
+        hint.style.display = 'none';
+      }
+    }
+  </script>
 
   <!-- Macro Detail Showcase Gallery -->
   <section class="section">
@@ -311,6 +295,71 @@
       <div class="gallery-item">
         <img src="angles_showcase.png" alt="4-Angle Turnaround">
         <div class="gallery-label">360&deg; Full Figure Turnaround</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Material & Finish Recommendations -->
+  <section class="section">
+    <div class="section-head">
+      <h2>Material &amp; Finish Recommendations</h2>
+      <p>Calibrated specifically for these recommended additive manufacturing media:</p>
+    </div>
+
+    <div class="material-grid">
+      <div class="mat-card">
+        <div class="mat-dot" style="background: #f1ede4;"></div>
+        <h3 style="font-size: 16px; margin-bottom: 6px;">8K White Resin</h3>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Ultra-smooth porcelain marble aesthetic. Captures microscopic facial and jewelry filigree.</p>
+      </div>
+
+      <div class="mat-card">
+        <div class="mat-dot" style="background: #c2593f;"></div>
+        <h3 style="font-size: 16px; margin-bottom: 6px;">Matte Terracotta PLA</h3>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Traditional temple clay appearance with hidden layer lines on FDM printers.</p>
+      </div>
+
+      <div class="mat-card">
+        <div class="mat-dot" style="background: #b8860b;"></div>
+        <h3 style="font-size: 16px; margin-bottom: 6px;">Antique Gold &bull; Rubbed</h3>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Metallic rub-n-buff post-processing reveals high-contrast ornamental highlights.</p>
+      </div>
+
+      <div class="mat-card">
+        <div class="mat-dot" style="background: #1e293b;"></div>
+        <h3 style="font-size: 16px; margin-bottom: 6px;">Carbon Matte Black</h3>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Modern museum monolith style with sharp shadow definition.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Testimonials / Social Proof -->
+  <section class="section">
+    <div class="section-head">
+      <h2>Client &amp; Maker Feedback</h2>
+      <p>What creators and 3D printing studios say about Nexray geometry.</p>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The 6-inch Kodanda Rama model sliced on my Bambu Lab P1S with zero warnings. The tree supports broke away cleanly and the face detail came out sharp."</p>
+        <div class="reviewer">Anand V.</div>
+        <div class="reviewer-sub">Verified 3D Print Collector &bull; Bengaluru</div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"I usually have to fix non-manifold edges on AI meshes myself. Nexray delivered a completely sealed, single-shell STL that was ready to print in 5 minutes."</p>
+        <div class="reviewer">Karthik S.</div>
+        <div class="reviewer-sub">Additive Manufacturing Studio &bull; Pune</div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The flat base contact made bed adhesion foolproof. Printed on my Elegoo Saturn 3 Ultra in 8K resin—looks like a temple marble idol."</p>
+        <div class="reviewer">Siddharth M.</div>
+        <div class="reviewer-sub">Heritage Art Maker &bull; Hyderabad</div>
       </div>
     </div>
   </section>
@@ -356,15 +405,18 @@
   <footer>
     <div class="footer-nav">
       <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
       <a href="portfolio.html">Portfolio</a>
+      <a href="viewer.html">3D Viewer</a>
+      <a href="pricing.html">Pricing &amp; Calculator</a>
       <a href="print-guide.html">Print Guide</a>
-      <a href="pricing.html">Pricing</a>
+      <a href="about.html">Studio</a>
       <a href="contact.html">Contact</a>
-      <a href="https://nexray.in">Nexray Main Site</a>
+      <a href="email-hub.html">Studio Email Hub</a>
     </div>
-    <p>&copy; 2026 <strong>NEXRAY 3D</strong> &bull; A Division of <a href="https://nexray.in">nexray.in</a>. All rights reserved.</p>
-    <p style="margin-top: 8px; font-size: 12px; color: #94a3b8;">
-      Studio Inquiries &bull; <a href="mailto:info@nexray.in">info@nexray.in</a>
+    <p>&copy; 2026 NEXRAY 3D Atelier. A division of <a href="https://nexray.in">nexray.in</a>. All rights reserved.</p>
+    <p style="margin-top: 6px; font-size: 12px; color: #94a3b8;">
+      Official Contacts: <a href="mailto:info@nexray.in">info@nexray.in</a> &bull; <a href="mailto:dev@nexray.in">dev@nexray.in</a> &bull; <a href="mailto:support@nexray.in">support@nexray.in</a>
     </p>
   </footer>
 

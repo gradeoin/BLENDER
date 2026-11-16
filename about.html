@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About The Studio // NEXRAY 3D Atelier</title>
+  <meta name="description" content="Discover the philosophy, engineering standards, and hardware behind Nexray 3D Atelier in Bangalore, India. Merging traditional sacred iconography with computational additive manufacturing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .about-hero {
+      background: linear-gradient(135deg, #0038FF 0%, #001A99 100%);
+      color: #ffffff;
+      padding: 64px 24px 72px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 30%, rgba(204, 255, 0, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .manifesto-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 44px 38px;
+      box-shadow: var(--shadow-brand);
+      margin-bottom: 50px;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .pillar-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 26px 22px;
+      transition: transform 0.2s;
+    }
+    .pillar-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--brand);
+    }
+    .pillar-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--brand);
+      margin-bottom: 8px;
+    }
+    .pillar-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .pillar-desc {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+    .hardware-section {
+      background: #0f172a;
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 44px 36px;
+      margin-top: 60px;
+    }
+    .hw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .hw-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .hw-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .hw-desc {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    .mail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .mail-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+    .mail-badge {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .mail-addr {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .mail-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="https://res.cloudinary.com/djy0vsvfg/image/upload/v1774822889/logo_highres_hdmcey.png" alt="Nexray Logo">
+        <span class="nav-logo-text">NEX<span class="logo-accent">RAY</span><span class="nav-sub">// 3D</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="viewer.html" class="nav-link">3D Viewer</a>
+        <a href="pricing.html" class="nav-link">Pricing &amp; Calc</a>
+        <a href="print-guide.html" class="nav-link">Print Guide</a>
+        <a href="about.html" class="nav-link active">Studio</a>
+        <a href="contact.html" class="btn-brand">Commission a Sculpt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <header class="about-hero">
+    <div class="hero-badge">&bull; ATELIER PHILOSOPHY &amp; LAB &bull;</div>
+    <h1>SACRED HERITAGE // <span class="highlight">COMPUTATIONAL PRECISION</span></h1>
+    <p class="hero-sub">
+      NEXRAY 3D Atelier is an advanced digital sculpting and additive engineering studio based in Bengaluru, India. We bridge classical Indian sculpture with sub-millimeter additive manufacturing.
+    </p>
+  </header>
+
+  <main class="section">
+
+    <!-- Studio Manifesto -->
+    <div class="manifesto-card">
+      <div style="font-size: 11px; font-weight: 800; color: var(--brand); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">THE STUDIO MANIFESTO</div>
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 800; color: var(--text); margin-bottom: 16px;">
+        ENGINEERED FOR THE SACRED, SCALED FOR REALITY.
+      </h2>
+      <p style="font-size: 15px; color: var(--text-2); line-height: 1.75; margin-bottom: 20px;">
+        For thousands of years, Indian temple sculptors followed the sacred geometry of the <em>Shilpa Shastras</em>—creating divine forms with profound proportions, mudras, and grace. However, when modern creators attempt to 3D print these deities using raw 3D scans or AI generators, the models fail: paper-thin cloth pleats break, bow staves collapse in mid-air, hands appear mutilated, and slicers crash on non-manifold edges.
+      </p>
+      <p style="font-size: 15px; color: var(--text-2); line-height: 1.75;">
+        <strong>NEXRAY 3D exists to solve this disconnect.</strong> We treat every digital sculpture as both a sacred work of art and an engineering challenge. Every bow stave is structurally anchored, every mudra is anatomically verified, every wall thickness is reinforced for physical polymer strength, and every mesh is mathematically sealed into a 100% watertight manifold.
+      </p>
+
+      <!-- The 4 Pillars Grid -->
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-num">01</div>
+          <div class="pillar-title">Iconographic Integrity</div>
+          <div class="pillar-desc">Deep cultural and scriptural research. We reconstruct accurate mudras, fanned arrow quivers, and traditional temple ornaments down to sub-millimeter scale.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">02</div>
+          <div class="pillar-title">Mathematical Manifolding</div>
+          <div class="pillar-desc">Strict topological rules: Zero non-manifold edges, zero boundary holes, unified boolean solids, and contact flat bases at Z=0.00mm.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">03</div>
+          <div class="pillar-title">Slicer Optimization</div>
+          <div class="pillar-desc">Designed with real slicer toolpaths in mind. Tested against Bambu Studio, OrcaSlicer, Chitubox, and Lychee with custom resin hollowing.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">04</div>
+          <div class="pillar-title">Transparent Milestones</div>
+          <div class="pillar-desc">50% advance to lock queue, interactive 3D web proofing, 50% upon dispatch, with our Zero Slicer Error Guarantee.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hardware & Tooling Lab -->
+    <div class="hardware-section">
+      <div style="font-size: 11px; font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase;">THE ATELIER EQUIPMENT</div>
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 800; margin-top: 4px;">Hardware &amp; Software Tooling</h2>
+      <p style="color: #94a3b8; font-size: 14px; margin-top: 8px; max-width: 680px;">
+        Our laboratory utilizes industry-standard computational CAD suites and industrial additive hardware to validate every micron of our digital sculptures.
+      </p>
+
+      <div class="hw-grid">
+        <div class="hw-card">
+          <div class="hw-title">Bambu Lab X1-Carbon</div>
+          <div class="hw-desc">High-speed CoreXY FDM with 0.20mm micro-detail nozzle for rapid physical prototyping and functional polymer testing.</div>
+        </div>
+        <div class="hw-card">
+          <div class="hw-title">Elegoo Saturn 3 Ultra 12K</div>
+          <div class="hw-desc">12K MSLA UV Resin printing with 19x24 micron XY resolution, capturing razor-sharp feather barbules and jewelry details.</div>
+        </div>
+        <div class="hw-card">
+          <div class="hw-title">Blender 4.x &amp; ZBrush</div>
+          <div class="hw-desc">Advanced multi-resolution digital sculpting, dynamesh remeshing, and precision boolean unification pipelines.</div>
+        </div>
+        <div class="hw-card">
+          <div class="hw-title">Industrial Slicing Engines</div>
+          <div class="hw-desc">Automated manifold verification using Chitubox Pro, Lychee Slicer, OrcaSlicer, and Netfabb repair algorithms.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dedicated Mailboxes -->
+    <div style="margin-top: 60px;">
+      <div class="section-head">
+        <h2>STUDIO DIRECTORY</h2>
+        <p>Connect with the specific engineering or commercial desk for your commission.</p>
+      </div>
+
+      <div class="mail-grid">
+        <div class="mail-card">
+          <span class="mail-badge">COMMISSIONS &amp; BILLING</span>
+          <div class="mail-addr"><a href="mailto:info@nexray.in" style="color: var(--brand); text-decoration: none;">info@nexray.in</a></div>
+          <div class="mail-desc">New project inquiries, commercial proposals, advance payments, and invoice receipts.</div>
+        </div>
+
+        <div class="mail-card">
+          <span class="mail-badge">3D CAD &amp; ENGINEERING</span>
+          <div class="mail-addr"><a href="mailto:dev@nexray.in" style="color: var(--brand); text-decoration: none;">dev@nexray.in</a></div>
+          <div class="mail-desc">CAD file exchanges, production binary STL dispatch, and custom mesh repair requests.</div>
+        </div>
+
+        <div class="mail-card">
+          <span class="mail-badge">POST-PRINT &amp; QUALITY SUPPORT</span>
+          <div class="mail-addr"><a href="mailto:support@nexray.in" style="color: var(--brand); text-decoration: none;">support@nexray.in</a></div>
+          <div class="mail-desc">Slicing troubleshooting, support removal guidance, and print photo review rewards.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="viewer.html">3D Viewer</a>
+      <a href="pricing.html">Pricing &amp; Calculator</a>
+      <a href="print-guide.html">Print Guide</a>
+      <a href="about.html">Studio</a>
+      <a href="contact.html">Contact</a>
+      <a href="email-hub.html">Studio Email Hub</a>
+    </div>
+    <p>&copy; 2026 NEXRAY 3D Atelier. A division of <a href="https://nexray.in">nexray.in</a>. All rights reserved.</p>
+    <p style="margin-top: 6px; font-size: 12px; color: #94a3b8;">
+      Official Contacts: <a href="mailto:info@nexray.in">info@nexray.in</a> &bull; <a href="mailto:dev@nexray.in">dev@nexray.in</a> &bull; <a href="mailto:support@nexray.in">support@nexray.in</a>
+    </p>
+  </footer>
+
+</body>
+</html>
