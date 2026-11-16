@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Printing &amp; Slicing Guide // NEXRAY 3D</title>
+  <meta name="description" content="Official manufacturing and slicing handbook for FDM and Resin 3D printing by Nexray 3D Atelier.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .guide-tabs {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .guide-tab-btn {
+      padding: 12px 28px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid rgba(0, 56, 255, 0.2);
+      background: #ffffff;
+      color: var(--text-2);
+      transition: all 0.2s;
+    }
+    .guide-tab-btn.active {
+      background: var(--brand);
+      color: #ffffff;
+      border-color: var(--brand);
+      box-shadow: 0 4px 18px var(--brand-glow);
+    }
+    .guide-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      padding: 36px 32px;
+      margin-bottom: 32px;
+    }
+    .guide-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .param-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+    .param-table th {
+      text-align: left;
+      padding: 12px 14px;
+      background: var(--bg-2);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 4px;
+    }
+    .param-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--bg-2);
+      color: var(--text-2);
+    }
+    .param-table td:first-child {
+      font-weight: 700;
+      color: var(--text);
+    }
+    .tip-box {
+      background: rgba(0, 56, 255, 0.05);
+      border-left: 4px solid var(--brand);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+    .tip-box strong {
+      color: var(--brand);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="https://res.cloudinary.com/djy0vsvfg/image/upload/v1774822889/logo_highres_hdmcey.png" alt="Nexray Logo">
+        <span class="nav-logo-text">NEX<span class="logo-accent">RAY</span><span class="nav-sub">// 3D</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="print-guide.html" class="nav-link active">Print Guide</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="contact.html" class="btn-brand">Commission a Sculpt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-banner">
+    <div class="hero-badge">TECHNICAL HANDBOOK</div>
+    <h1>The Official <span>Slicing &amp; Print</span> Guide</h1>
+    <p class="hero-sub">
+      Master settings, orientation strategies, and support protocols for printing Nexray 3D assets on Bambu Lab, Prusa, Creality, and Resin printers.
+    </p>
+  </section>
+
+  <!-- Content Section -->
+  <section class="section">
+    
+    <!-- FDM Printing Guide -->
+    <div class="guide-card">
+      <h3>
+        <span style="display:inline-block; width:12px; height:12px; border-radius:50%; background:var(--brand);"></span>
+        FDM (Filament) Slicing Guide &bull; Bambu Studio, OrcaSlicer, PrusaSlicer
+      </h3>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7;">
+        All Nexray 3D models feature a pre-leveled planar base at Z = 0.00 mm. They seat flush on smooth PEI or textured beds without requiring rafts or brim attachments.
+      </p>
+
+      <table class="param-table">
+        <thead>
+          <tr>
+            <th>Setting</th>
+            <th>Recommended Value</th>
+            <th>Why it Matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Layer Height</td>
+            <td><strong>0.12 mm &ndash; 0.16 mm</strong></td>
+            <td>Resolves micro-relief on facial features and jewelry without visible stair-stepping.</td>
+          </tr>
+          <tr>
+            <td>Support Type</td>
+            <td><strong>Tree / Organic Supports</strong></td>
+            <td>Branches easily reach the chin, fingertips, and bow arch without scarring vertical drapery.</td>
+          </tr>
+          <tr>
+            <td>Support Overhang Angle</td>
+            <td><strong>30&deg; &ndash; 35&deg;</strong></td>
+            <td>Ensures only critical overhangs are supported, cutting print time and material waste.</td>
+          </tr>
+          <tr>
+            <td>Infill Pattern &amp; Density</td>
+            <td><strong>15% &ndash; 20% Gyroid</strong></td>
+            <td>Gyroid infill provides isotropic physical strength and prevents nozzle dragging.</td>
+          </tr>
+          <tr>
+            <td>Seam Position</td>
+            <td><strong>Back / Aligned</strong></td>
+            <td>Hides layer transition retractions behind the cape and shoulder cloth.</td>
+          </tr>
+          <tr>
+            <td>Print Bed Contact</td>
+            <td><strong>No Raft / 0 mm Brim</strong></td>
+            <td>The built-in lotus pedestal is mathematically flat for direct adhesion.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip-box">
+        <strong>💡 Pro Tip for Bambu &amp; OrcaSlicer:</strong> Enable "Variable Layer Height" and set the smoothing quality around the crown and chin. This automatically prints the pedestal at 0.20 mm for speed and the face at 0.08 mm for ultimate detail!
+      </div>
+    </div>
+
+    <!-- Resin (SLA / DLP) Guide -->
+    <div class="guide-card">
+      <h3>
+        <span style="display:inline-block; width:12px; height:12px; border-radius:50%; background:#7c3aed;"></span>
+        Resin (SLA / DLP) Slicing Guide &bull; Chitubox, Lychee
+      </h3>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7;">
+        Resin printers reproduce 100% of the 2.20M polygon micro-details. For best results, follow this orientation and support protocol:
+      </p>
+
+      <table class="param-table">
+        <thead>
+          <tr>
+            <th>Setting</th>
+            <th>Recommended Value</th>
+            <th>Why it Matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Print Orientation</td>
+            <td><strong>35&deg; &ndash; 45&deg; Tilt (Backward)</strong></td>
+            <td>Minimizes peel force suction on each layer and prevents distortion across the flat base.</td>
+          </tr>
+          <tr>
+            <td>Layer Exposure</td>
+            <td><strong>0.05 mm (50 microns)</strong></td>
+            <td>Standard 8K / 12K high-definition resin layer height.</td>
+          </tr>
+          <tr>
+            <td>Support Density</td>
+            <td><strong>Light to Medium</strong></td>
+            <td>Use 0.3mm contact tip diameter on the front to allow peel-off without leaving pits.</td>
+          </tr>
+          <tr>
+            <td>Hollowing (Optional)</td>
+            <td><strong>2.0 mm Wall + 2 Drain Holes</strong></td>
+            <td>Saves 60% resin on a 6-inch idol. Place drain holes on the underside of the base.</td>
+          </tr>
+          <tr>
+            <td>Post-Curing Protocol</td>
+            <td><strong>IPA Wash (4 min) + UV Cure (3 min)</strong></td>
+            <td>Prevents brittleness and preserves sharp edge fidelity.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip-box">
+        <strong>💡 Pro Tip for Resin Printing:</strong> Always place the heaviest anchor supports on the bottom edge of the pedestal, and keep front-facing supports strictly "Light" (0.25mm–0.30mm tips) so they snap off cleanly with warm water.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="print-guide.html">Print Guide</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://nexray.in">Nexray Main Site</a>
+    </div>
+    <p>&copy; 2026 <strong>NEXRAY 3D</strong> &bull; A Division of <a href="https://nexray.in">nexray.in</a>. All rights reserved.</p>
+    <p style="margin-top: 8px; font-size: 12px; color: #94a3b8;">
+      Studio Inquiries &bull; <a href="mailto:info@nexray.in">info@nexray.in</a>
+    </p>
+  </footer>
+
+</body>
+</html>

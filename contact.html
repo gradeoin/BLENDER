@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commission a 3D Sculpt // NEXRAY 3D</title>
+  <meta name="description" content="Inquire about custom 3D deity sculptures, figurines, and print-ready STL modeling commissions with Nexray 3D Atelier.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-wrapper {
+      max-width: 960px;
+      margin: 40px auto 80px auto;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 36px;
+      padding: 0 24px;
+    }
+    @media(max-width: 800px) {
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+    .form-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-brand);
+      padding: 38px 32px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #cbd5e1;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text);
+      background: #ffffff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(0, 56, 255, 0.12);
+    }
+    .contact-info-card {
+      background: #0f172a;
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 38px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .info-item {
+      margin-bottom: 28px;
+    }
+    .info-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .info-val {
+      font-size: 16px;
+      color: #f8fafc;
+      font-weight: 600;
+    }
+    .info-val a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .info-val a:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="https://res.cloudinary.com/djy0vsvfg/image/upload/v1774822889/logo_highres_hdmcey.png" alt="Nexray Logo">
+        <span class="nav-logo-text">NEX<span class="logo-accent">RAY</span><span class="nav-sub">// 3D</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="print-guide.html" class="nav-link">Print Guide</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="contact.html" class="btn-brand">Commission a Sculpt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-banner">
+    <div class="hero-badge">COMMISSIONS &bull; INQUIRIES</div>
+    <h1>Start Your <span>Custom 3D</span> Project</h1>
+    <p class="hero-sub">
+      Tell us about your project, target scale, and reference images. We respond with a scope breakdown and quote in under 4 hours.
+    </p>
+  </section>
+
+  <!-- Contact Form & Info Grid -->
+  <div class="contact-wrapper">
+    
+    <!-- Form Card -->
+    <div class="form-card">
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 20px;">Commission Form</h2>
+      
+      <form id="commission-form" onsubmit="handleForm(event)">
+        <div class="form-group">
+          <label class="form-label">Full Name *</label>
+          <input type="text" id="name" class="form-input" placeholder="e.g. Rahul Sharma" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email Address *</label>
+          <input type="email" id="email" class="form-input" placeholder="your-email@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">WhatsApp / Phone Number</label>
+          <input type="tel" id="phone" class="form-input" placeholder="+91 98765 43210">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Service Type *</label>
+          <select id="service" class="form-select" required>
+            <option value="Custom 3D Sculpt">Custom 3D Sculpt from Photo (&#8377;1,499 &ndash; &#8377;2,499)</option>
+            <option value="Mesh Repair">Mesh Repair &amp; Watertight Slicer Prep (&#8377;799)</option>
+            <option value="Turnkey Print">Turnkey Sculpt + Physical 3D Print (&#8377;3,999+)</option>
+            <option value="General Inquiry">General / Other 3D Inquiry</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Target Print Height</label>
+          <select id="height" class="form-select">
+            <option value="6 inches (150 mm)">6 inches (150 mm) &bull; Standard Desktop Idol</option>
+            <option value="4 inches (100 mm)">4 inches (100 mm) &bull; Miniature</option>
+            <option value="8 inches (200 mm)">8 inches (200 mm) &bull; Large Display</option>
+            <option value="10+ inches (250+ mm)">10+ inches &bull; Monumental Scale</option>
+            <option value="Digital only (Not sure)">Digital only / Unsure</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Project Details &amp; Reference Link</label>
+          <textarea id="message" rows="4" class="form-textarea" placeholder="Describe the model, pose, clothing details, or paste a Google Drive / Pinterest link to reference images..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-brand" style="width: 100%; padding: 14px; font-size: 14px; border: none; cursor: pointer;">
+          Send Commission Inquiry &rarr;
+        </button>
+      </form>
+    </div>
+
+    <!-- Contact Info Card -->
+    <div class="contact-info-card">
+      <div>
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 24px; color: #ffffff;">
+          NEX<span style="color: var(--accent);">RAY</span> 3D ATELIER
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">Direct Studio Email</div>
+          <div class="info-val"><a href="mailto:info@nexray.in">info@nexray.in</a></div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">Operating Headquarters</div>
+          <div class="info-val">Bengaluru, Karnataka &bull; India</div>
+          <div style="font-size: 12px; color: #94a3b8; margin-top: 4px;">Remote digital dispatch worldwide</div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">Response Guarantee</div>
+          <div class="info-val">Under 4 Hours</div>
+          <div style="font-size: 12px; color: #94a3b8; margin-top: 4px;">Monday &ndash; Saturday &bull; 9 AM &ndash; 9 PM IST</div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">Deliverable Standards</div>
+          <div class="info-val" style="color: var(--accent);">100% Manifold Watertight Guarantee</div>
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+        <span style="font-size: 12px; color: #94a3b8;">Parent Domain: <a href="https://nexray.in" style="color: var(--accent); text-decoration: none;">nexray.in</a></span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function handleForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const service = document.getElementById('service').value;
+      const height = document.getElementById('height').value;
+      const message = document.getElementById('message').value;
+
+      const subject = encodeURIComponent(`3D Commission Inquiry: ${service} - ${name}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `WhatsApp/Phone: ${phone}\n` +
+        `Service: ${service}\n` +
+        `Target Scale: ${height}\n\n` +
+        `Project Details:\n${message}\n`
+      );
+
+      window.location.href = `mailto:info@nexray.in?subject=${subject}&body=${body}`;
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="print-guide.html">Print Guide</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://nexray.in">Nexray Main Site</a>
+    </div>
+    <p>&copy; 2026 <strong>NEXRAY 3D</strong> &bull; A Division of <a href="https://nexray.in">nexray.in</a>. All rights reserved.</p>
+    <p style="margin-top: 8px; font-size: 12px; color: #94a3b8;">
+      Studio Inquiries &bull; <a href="mailto:info@nexray.in">info@nexray.in</a>
+    </p>
+  </footer>
+
+</body>
+</html>

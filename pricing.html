@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing &amp; Commission Tiers // NEXRAY 3D</title>
+  <meta name="description" content="Transparent pricing for 3D sculpting, STL repair, and physical additive manufacturing commissions by Nexray 3D.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .pricing-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 38px 30px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-brand);
+    }
+    .pricing-card.featured {
+      border: 2px solid var(--brand);
+      box-shadow: 0 16px 40px rgba(0, 56, 255, 0.18);
+    }
+    .popular-pill {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--brand);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 16px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 14px var(--brand-glow);
+    }
+    .tier-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .tier-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      margin: 16px 0 6px 0;
+    }
+    .tier-price span {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .tier-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      min-height: 42px;
+    }
+    .tier-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px 0;
+      font-size: 13px;
+      color: var(--text-2);
+      flex-grow: 1;
+    }
+    .tier-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--bg-2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .check {
+      color: #16a34a;
+      font-weight: 900;
+    }
+    .faq-section {
+      max-width: 800px;
+      margin: 80px auto 20px auto;
+    }
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 22px 26px;
+      margin-bottom: 16px;
+    }
+    .faq-item h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .faq-item p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="https://res.cloudinary.com/djy0vsvfg/image/upload/v1774822889/logo_highres_hdmcey.png" alt="Nexray Logo">
+        <span class="nav-logo-text">NEX<span class="logo-accent">RAY</span><span class="nav-sub">// 3D</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="print-guide.html" class="nav-link">Print Guide</a>
+        <a href="pricing.html" class="nav-link active">Pricing</a>
+        <a href="contact.html" class="btn-brand">Commission a Sculpt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-banner">
+    <div class="hero-badge">TRANSPARENT RATES</div>
+    <h1>Simple, Predictable <span>Studio Pricing</span></h1>
+    <p class="hero-sub">
+      From single-file mesh repairs to custom master sculptural commissions—zero hidden fees.
+    </p>
+  </section>
+
+  <!-- Pricing Cards -->
+  <section class="section">
+    <div class="pricing-grid">
+      
+      <!-- Tier 1 -->
+      <div class="pricing-card">
+        <div class="tier-name">Mesh Repair &amp; Slicer Prep</div>
+        <div class="tier-price">&#8377;799 <span>/ file</span></div>
+        <div class="tier-desc">For creators with existing 3D files that fail in slicers due to non-manifold edges or holes.</div>
+        <ul class="tier-features">
+          <li><span class="check">✓</span> 100% Watertight Manifold Repair</li>
+          <li><span class="check">✓</span> Planar Base Leveling (Z = 0 mm)</li>
+          <li><span class="check">✓</span> Normal Orientation Correction</li>
+          <li><span class="check">✓</span> Decimation under 100 MB Limit</li>
+          <li><span class="check">✓</span> 24-Hour Express Turnaround</li>
+        </ul>
+        <a href="contact.html?service=repair" class="btn-brand" style="text-align: center; background: #0f172a;">Submit File for Repair</a>
+      </div>
+
+      <!-- Tier 2 (Featured) -->
+      <div class="pricing-card featured">
+        <div class="popular-pill">Most Popular</div>
+        <div class="tier-name">Custom 3D Sculpt</div>
+        <div class="tier-price">&#8377;1,499 <span>&ndash; &#8377;2,499</span></div>
+        <div class="tier-desc">Complete digital sculpting from photo reference or sketches into a print-ready master STL.</div>
+        <ul class="tier-features">
+          <li><span class="check">✓</span> <strong>Full Sculptural Modeling</strong> from Photo Reference</li>
+          <li><span class="check">✓</span> <strong>Calibrated Scale</strong> (Exact 4", 6", 8", or 10")</li>
+          <li><span class="check">✓</span> <strong>Intricate Micro-Reliefs</strong> (Jewelry, Faces, Fabric)</li>
+          <li><span class="check">✓</span> <strong>2.0M+ Polygon Density</strong> Single Solid Shell</li>
+          <li><span class="check">✓</span> <strong>Tailored Print Profiles</strong> for FDM &amp; Resin</li>
+          <li><span class="check">✓</span> <strong>Personal &amp; Commercial Print License</strong></li>
+        </ul>
+        <a href="contact.html?service=sculpt" class="btn-lime" style="text-align: center;">Commission a Custom Sculpt</a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="pricing-card">
+        <div class="tier-name">Turnkey Sculpt &amp; Print</div>
+        <div class="tier-price">&#8377;3,999+ <span>/ finished idol</span></div>
+        <div class="tier-desc">We sculpt the model, 3D print it on 8K resin or tough filament, clean, cure, and ship to your door.</div>
+        <ul class="tier-features">
+          <li><span class="check">✓</span> Custom 3D Digital Sculpting Included</li>
+          <li><span class="check">✓</span> Physical 8K Resin or Matte Filament Output</li>
+          <li><span class="check">✓</span> Professional Support Removal &amp; UV Curing</li>
+          <li><span class="check">✓</span> Protective Bubble Box Packaging</li>
+          <li><span class="check">✓</span> Pan-India Courier Delivery with Tracking</li>
+        </ul>
+        <a href="contact.html?service=turnkey" class="btn-brand" style="text-align: center; background: #0f172a;">Inquire for Turnkey Print</a>
+      </div>
+
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <div class="section-head">
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know about commissioning 3D assets with Nexray.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>What file formats do I receive?</h4>
+        <p>You receive the high-resolution binary STL file packaged in a verified ZIP archive, along with recommended slicer settings. Upon request, we can also provide OBJ or 3MF formats.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Can I rescale the 6-inch file in my slicer?</h4>
+        <p>Yes! Because our meshes are 100% solid and watertight, you can scale them up or down in Bambu Studio, OrcaSlicer, or Cura without creating holes or geometry artifacts.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>How do payments work?</h4>
+        <p>For custom commissions, we accept UPI, Google Pay, PhonePe, and Bank Transfer. We typically take an advance to begin modeling, and deliver the production file upon completion.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="print-guide.html">Print Guide</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://nexray.in">Nexray Main Site</a>
+    </div>
+    <p>&copy; 2026 <strong>NEXRAY 3D</strong> &bull; A Division of <a href="https://nexray.in">nexray.in</a>. All rights reserved.</p>
+    <p style="margin-top: 8px; font-size: 12px; color: #94a3b8;">
+      Studio Inquiries &bull; <a href="mailto:info@nexray.in">info@nexray.in</a>
+    </p>
+  </footer>
+
+</body>
+</html>

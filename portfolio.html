@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio &amp; Case Studies // NEXRAY 3D</title>
+  <meta name="description" content="Explore past 3D sculpting commissions, deity restorations, and precision additive manufacturing projects by Nexray 3D.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .case-study {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-brand);
+      padding: 44px 38px;
+      margin-bottom: 50px;
+    }
+    .case-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .case-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--text);
+      text-transform: uppercase;
+    }
+    .case-tag {
+      background: rgba(0, 56, 255, 0.08);
+      color: var(--brand);
+      border: 1px solid rgba(0, 56, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .case-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    @media(max-width: 860px) {
+      .case-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .case-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .case-gallery img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      display: block;
+    }
+    .case-gallery .main-img {
+      grid-column: 1 / -1;
+      height: 280px;
+    }
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+    .specs-table tr {
+      border-bottom: 1px solid var(--bg-2);
+    }
+    .specs-table td {
+      padding: 10px 0;
+      color: var(--text-2);
+    }
+    .specs-table td:last-child {
+      text-align: right;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .proj-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: all 0.2s;
+    }
+    .proj-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-brand);
+    }
+    .proj-img {
+      height: 220px;
+      background: #0f172a;
+      overflow: hidden;
+    }
+    .proj-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .proj-body {
+      padding: 24px;
+    }
+    .proj-body h3 {
+      font-size: 19px;
+      margin-bottom: 6px;
+    }
+    .proj-meta {
+      font-size: 12px;
+      color: var(--brand);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .proj-body p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="https://res.cloudinary.com/djy0vsvfg/image/upload/v1774822889/logo_highres_hdmcey.png" alt="Nexray Logo">
+        <span class="nav-logo-text">NEX<span class="logo-accent">RAY</span><span class="nav-sub">// 3D</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="portfolio.html" class="nav-link active">Portfolio</a>
+        <a href="print-guide.html" class="nav-link">Print Guide</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="contact.html" class="btn-brand">Commission a Sculpt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <div class="hero-badge">PORTFOLIO &bull; CASE STUDIES</div>
+    <h1>Engineering <span>Production-Grade</span> 3D Sculptures</h1>
+    <p class="hero-sub">
+      Explore our featured sculptural commissions, digital restorations, and manufacturing-ready additive assets.
+    </p>
+  </section>
+
+  <!-- Main Case Study: Lord Rama -->
+  <section class="section">
+    <div class="case-study">
+      <div class="case-header">
+        <div>
+          <span style="font-size: 11px; font-weight: 800; color: var(--brand); letter-spacing: 2px; text-transform: uppercase;">COMMISSION CASE STUDY</span>
+          <h2 class="case-title">Lord Kodanda Rama (6-Inch Master Sculpt)</h2>
+        </div>
+        <span class="case-tag">Delivered &bull; Watertight STL</span>
+      </div>
+
+      <div class="case-grid">
+        <div class="case-gallery">
+          <img src="SuperProfile_Cover_1280x720.png" alt="Master Render" class="main-img">
+          <img src="face_detail.png" alt="Face and Mukut Close-up">
+          <img src="quiver_detail.png" alt="Quiver Feathers Close-up">
+        </div>
+
+        <div>
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px;">The Engineering Challenge</h3>
+          <p style="font-size: 14px; color: var(--text-2); line-height: 1.7; margin-bottom: 16px;">
+            The client required a faithful 3D sculpture of Kodanda Rama based on a classical polychrome idol photograph. The raw AI generation had broken geometry, severe limb pinches, and hallucinated hand rods.
+          </p>
+          <p style="font-size: 14px; color: var(--text-2); line-height: 1.7; margin-bottom: 20px;">
+            Nexray 3D restructured the entire mesh: sculpted a 4-arrow fanned quiver behind the right shoulder, freed the right hand into a serene Varada Mudra, unified the Kodanda bow stave, and calibrated the base plate to a flat plane at Z = 0.00 mm.
+          </p>
+
+          <table class="specs-table">
+            <tr>
+              <td>Target Physical Scale</td>
+              <td>152.40 mm (6.00" Exact)</td>
+            </tr>
+            <tr>
+              <td>Polygon Count</td>
+              <td>2,206,298 Triangles</td>
+            </tr>
+            <tr>
+              <td>Topology Verification</td>
+              <td><span style="color: #16a34a; font-weight: 700;">100% Watertight Manifold</span></td>
+            </tr>
+            <tr>
+              <td>Print Compatibility</td>
+              <td>Bambu / OrcaSlicer (FDM) &amp; Chitubox (SLA)</td>
+            </tr>
+            <tr>
+              <td>Deliverable Format</td>
+              <td>Binary STL (.zip 42 MB / Direct 73 MB)</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-2); border-radius: var(--radius-sm); padding: 20px; text-align: center;">
+        <span style="font-size: 14px; color: var(--text-2); font-weight: 600;">Want a similar custom deity or collectible sculpture for your 3D printing project?</span>
+        <a href="contact.html" class="btn-brand" style="margin-left: 16px; padding: 8px 20px; font-size: 12px;">Inquire for Custom Work</a>
+      </div>
+    </div>
+
+    <!-- More Projects Grid -->
+    <div class="section-head" style="margin-top: 60px;">
+      <h2>Additional Studio Capabilities</h2>
+      <p>From sacred heritage art to industrial prototyping, we prepare assets for high-end additive manufacturing.</p>
+    </div>
+
+    <div class="project-grid">
+      <div class="proj-card">
+        <div class="proj-img">
+          <img src="torso_detail.png" alt="Sacred Deity Murti Restoration">
+        </div>
+        <div class="proj-body">
+          <div class="proj-meta">SACRED HERITAGE &bull; IDOLS</div>
+          <h3>Temple Murti &amp; Deity Restorations</h3>
+          <p>Converting temple reference photos and scriptures into museum-grade 3D printable STL files with intricate jewelry and drape folds.</p>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img">
+          <img src="angles_showcase.png" alt="360 Figurine Turnaround">
+        </div>
+        <div class="proj-body">
+          <div class="proj-meta">COLLECTIBLES &bull; RESIN TOYS</div>
+          <h3>Articulated &amp; Hero Figurines</h3>
+          <p>High-character sculpts with balanced centers of gravity and keyed assembly joints for multi-part resin and FDM printing.</p>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img">
+          <img src="quiver_detail.png" alt="Precision Assemblies">
+        </div>
+        <div class="proj-body">
+          <div class="proj-meta">PROTOTYPING &bull; REPAIR</div>
+          <h3>Mesh Repair &amp; Slicer Optimization</h3>
+          <p>Fixing non-manifold tears, inverting inverted face normals, closing holes, and decimation while preserving 100% surface sharpness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="print-guide.html">Print Guide</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://nexray.in">Nexray Main Site</a>
+    </div>
+    <p>&copy; 2026 <strong>NEXRAY 3D</strong> &bull; A Division of <a href="https://nexray.in">nexray.in</a>. All rights reserved.</p>
+    <p style="margin-top: 8px; font-size: 12px; color: #94a3b8;">
+      Studio Inquiries &bull; <a href="mailto:info@nexray.in">info@nexray.in</a>
+    </p>
+  </footer>
+
+</body>
+</html>
