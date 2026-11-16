@@ -20,3 +20,8 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
+
+# 3D CAD & Print Files (Exceed Cloudflare Pages 25MB CDN limit)
+*.stl
+*.obj
+*.fbx
